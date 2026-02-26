@@ -1,0 +1,129 @@
+@use '../utilities/variables.scss';
+@use '../utilities/extends';
+
+/*MAIN - INDEX*/
+main{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    height: 97vh;
+    margin: .50rem;
+    border: .2rem solid variables.$color-negro;
+    border-radius: .70rem;
+    position: relative;
+    z-index: 3;
+    overflow: hidden;
+}
+.cabecera{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 1rem;
+    gap: .50rem;
+    height: 2rem;
+    border-bottom: .2rem solid variables.$color-negro;
+}
+.circulo{
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 2rem;
+    border: .2rem solid variables.$color-negro;
+}
+.container-audio{
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+#audio{
+    height: 2.2rem;
+    padding-left: 2rem;
+}
+.contenido-principal {
+    display: flex;
+    flex-direction: column;
+    height: 10%;
+    flex: 7;
+}
+#menu{
+    flex:7;
+    @extend %flexCenter;
+    flex-direction: column;
+    h1{
+        font-family: "Jersey 10", sans-serif; 
+        font-size: 2.5rem;
+    }
+}
+
+.limon-titulo{
+    height: 2rem
+}
+.botones{
+    @extend %flexCenter;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+.boton-menu{
+    font-family: "Chivo Mono", monospace;
+    background-color: variables.$color-base;
+    text-decoration: none;
+    color: variables.$color-texto;
+    margin: .50rem;
+    padding: 0.3rem 2rem;
+    border: .1rem solid variables.$color-negro;
+    border-radius: 3rem;
+}
+.imagen-menu{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+.tienda-jugos{
+       width: 80%;
+       height: fit-content;
+       padding-bottom: 3rem;
+}
+.arbolUno{
+    height: 55%;
+    width: auto;
+    padding-left: 31%;
+}
+
+.cielo, .cesped {
+    position: fixed; // Fixed se pega a la ventana, no al contenido
+    z-index: 1;
+}
+#arbol{
+    z-index: 2;
+    position: absolute;
+    bottom: 10rem;
+    height: 18rem;
+    right: 9rem;
+}
+.cielo {
+    top: 0;
+    right: 0;
+}
+
+.cesped {
+    bottom: 0;
+    left: 0;
+    width: 132%;
+    height: 13rem;
+}
+.border-top{
+    --bs-border-width: .2rem;
+    --bs-border-color: #3d3a3a;
+}
+/*MAIN - Dia*/
+.contenedor-principal-dias{
+    @extend %flexCenter;
+    flex: 1;
+}
+.imagen-sol{
+    height: 3rem;
+}

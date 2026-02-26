@@ -1,0 +1,325 @@
+/*@use './utilities/extends';
+@use './utilities/mixins';
+@use './layout/header';
+@use './layout/secciones';*/
+#menu, .botones, .contenedor-principal-dias {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*MAIN - INDEX*/
+main {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  height: 97vh;
+  margin: 0.5rem;
+  border: 0.2rem solid #3d3a3a;
+  border-radius: 0.7rem;
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.cabecera {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 1rem;
+  gap: 0.5rem;
+  height: 2rem;
+  border-bottom: 0.2rem solid #3d3a3a;
+}
+
+.circulo {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 2rem;
+  border: 0.2rem solid #3d3a3a;
+}
+
+.container-audio {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+#audio {
+  height: 2.2rem;
+  padding-left: 2rem;
+}
+
+.contenido-principal {
+  display: flex;
+  flex-direction: column;
+  height: 10%;
+  flex: 7;
+}
+
+#menu {
+  flex: 7;
+  flex-direction: column;
+}
+#menu h1 {
+  font-family: "Jersey 10", sans-serif;
+  font-size: 2.5rem;
+}
+
+.limon-titulo {
+  height: 2rem;
+}
+
+.botones {
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.boton-menu {
+  font-family: "Chivo Mono", monospace;
+  background-color: #FAF4E6;
+  text-decoration: none;
+  color: #1e1e1e;
+  margin: 0.5rem;
+  padding: 0.3rem 2rem;
+  border: 0.1rem solid #3d3a3a;
+  border-radius: 3rem;
+}
+
+.imagen-menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.tienda-jugos {
+  width: 80%;
+  height: fit-content;
+  padding-bottom: 3rem;
+}
+
+.arbolUno {
+  height: 55%;
+  width: auto;
+  padding-left: 31%;
+}
+
+.cielo, .cesped {
+  position: fixed;
+  z-index: 1;
+}
+
+#arbol {
+  z-index: 2;
+  position: absolute;
+  bottom: 10rem;
+  height: 18rem;
+  right: 9rem;
+}
+
+.cielo {
+  top: 0;
+  right: 0;
+}
+
+.cesped {
+  bottom: 0;
+  left: 0;
+  width: 132%;
+  height: 13rem;
+}
+
+.border-top {
+  --bs-border-width: .2rem;
+  --bs-border-color: #3d3a3a;
+}
+
+/*MAIN - Dia*/
+.contenedor-principal-dias {
+  flex: 1;
+}
+
+.imagen-sol {
+  height: 3rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #FAF4E6;
+  font-family: "Chivo Mono", monospace;
+  color: #1e1e1e;
+}
+
+@media (min-width: 376px) {
+  .tienda-jugos {
+    width: 80%;
+    padding-bottom: 6rem;
+  }
+  #arbol {
+    bottom: 10rem;
+    height: 22rem;
+    right: 8rem;
+  }
+}
+@media (min-width: 413px) {
+  .tienda-jugos {
+    width: 60%;
+    padding-bottom: 4rem;
+  }
+  #arbol {
+    bottom: 10rem;
+    height: 18rem;
+    left: 0;
+  }
+}
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+  .tienda-jugos {
+    padding-bottom: 2rem;
+    width: 50%;
+  }
+  #arbol {
+    left: 0;
+    bottom: 10rem;
+    height: 20rem;
+  }
+  .cesped {
+    width: 122%;
+    height: 12rem;
+  }
+  #dias {
+    font-size: 2rem;
+  }
+  .imagen-sol {
+    height: 4rem;
+  }
+}
+@media (min-width: 768px) {
+  .cabecera {
+    height: 5%;
+  }
+  #audio {
+    height: 2.7rem;
+  }
+  #menu h1 {
+    font-size: 3rem;
+  }
+  .tienda-jugos {
+    width: 60%;
+    padding-bottom: 3rem;
+  }
+  #arbol {
+    left: 0;
+    bottom: 10rem;
+    height: 20rem;
+  }
+}
+@media (min-width: 992px) {
+  #audio {
+    height: 3.2rem;
+    padding-left: 3rem;
+  }
+  .contenido-principal {
+    flex-direction: row;
+  }
+  .imagen-menu {
+    justify-content: start;
+  }
+  .tienda-jugos {
+    padding-bottom: 0rem;
+    width: 80%;
+  }
+  #menu {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+  }
+  #menu h1 {
+    font-size: 4rem;
+  }
+  .limon-titulo {
+    height: 3rem;
+  }
+  .boton-menu {
+    padding: 0.7rem 4rem;
+    border-radius: 0.7rem;
+  }
+  .cesped {
+    height: auto;
+    width: auto;
+  }
+}
+@media (min-width: 1200px) {
+  .tienda-jugos {
+    height: 70%;
+    width: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .tienda-jugos {
+    height: 80%;
+    width: auto;
+  }
+}
+@media (orientation: landscape) and (max-height: 527px) {
+  .contenedor {
+    height: auto;
+    min-height: 97vh;
+  }
+  .cabecera {
+    height: 2rem;
+  }
+  .contenido-principal {
+    flex-direction: row;
+  }
+  #menu {
+    flex: 1;
+    justify-content: center;
+  }
+  #menu h1 {
+    font-size: 2.5rem;
+  }
+  .imagen-menu {
+    flex: 1;
+    align-items: end;
+  }
+  .tienda-jugos {
+    width: 80%;
+    height: auto;
+    padding-bottom: 0.1rem;
+  }
+  .botones {
+    margin-top: 0.4rem;
+  }
+  .boton-menu {
+    margin: 0.2rem;
+    padding: 0.15rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  #arbol {
+    bottom: 3.5rem;
+  }
+  .cesped {
+    height: 6rem;
+    width: 110%;
+  }
+  .border-top {
+    --bs-border-width: 0rem;
+    --bs-border-color:none;
+  }
+  .p-5 {
+    padding: 0rem !important;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

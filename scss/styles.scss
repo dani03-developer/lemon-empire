@@ -1,0 +1,201 @@
+@use './utilities/variables';
+/*@use './utilities/extends';
+@use './utilities/mixins';
+@use './layout/header';
+@use './layout/secciones';*/
+@use './layout/main.scss';
+//@use './layout/footer';
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: variables.$color-base;
+    font-family: "Chivo Mono", monospace;
+    color: variables.$color-texto;
+}
+
+@media (min-width: 376px) {
+    .tienda-jugos{
+       width: 80%;
+       padding-bottom: 6rem;
+    }
+
+    #arbol{
+        bottom: 10rem;
+        height: 22rem;
+        right: 8rem;
+    }
+
+}
+@media (min-width: 413px){
+    .tienda-jugos{
+       width: 60%;
+       padding-bottom: 4rem;
+    }
+   
+      #arbol{
+        bottom: 10rem;
+        height: 18rem;
+        left: 0;
+    }
+}
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+    .tienda-jugos{
+       padding-bottom: 2rem;
+       width: 50%;
+   }
+    #arbol{
+        left: 0;
+        bottom: 10rem;
+        height: 20rem;
+    }
+    .cesped{
+        width: 122%;
+        height: 12rem;
+    }
+    #dias{
+        font-size: 2rem;
+    }
+    .imagen-sol{
+    height: 4rem;
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+     .cabecera{
+        height: 5%;
+    }
+    #audio{
+    height: 2.7rem;
+    }
+    #menu{
+        h1{
+            font-size: 3rem;
+        }
+    }
+    .tienda-jugos{
+        width: 60%;
+       padding-bottom: 3rem;
+    }
+     #arbol{
+        left: 0;
+        bottom: 10rem;
+        height: 20rem;
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    #audio{
+    height: 3.2rem;
+    padding-left: 3rem;
+    }
+    .contenido-principal {
+        flex-direction: row; // menu e imagen quedan lado a lado
+    }
+    .imagen-menu{
+        justify-content: start;
+    }
+   .tienda-jugos{
+            padding-bottom: 0rem;
+            width: 80%;
+        }
+    #menu{
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        h1{
+            font-size: 4rem;
+        }
+    }
+    .limon-titulo{
+    height: 3rem
+    }
+    .boton-menu{
+    padding: .7rem 4rem;
+    border-radius: .7rem;
+    }
+    .cesped{
+        height: auto;
+        width: auto;
+    }
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+    .tienda-jugos{
+        height: 70%;
+        width: auto;
+    }
+}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {
+    .tienda-jugos{
+        height: 80%;
+        width: auto;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 527px) { //landscape Compara el ancho vs el alto de la pantalla. Si el ancho es mayor que el alto → landscape. Si el alto es mayor que el ancho → portrait
+
+    .contenedor {
+        height: auto;
+        min-height: 97vh;
+    }
+    .cabecera{
+        height: 2rem;
+    }
+    .contenido-principal {
+        flex-direction: row;
+    }
+
+    #menu {
+        flex: 1;
+        justify-content: center;
+        h1 {
+            font-size: 2.5rem;
+        }
+    }
+
+    .imagen-menu {
+        flex: 1;
+        align-items: end;
+    }
+   .tienda-jugos {
+            width: 80%;
+            height: auto;
+            padding-bottom: .1rem;
+        }
+
+    .botones {
+        margin-top: .4rem;
+    }
+
+    .boton-menu {
+        margin: .2rem;
+        padding: 0.15rem 1.2rem;
+        font-size: .85rem;
+    }
+
+    #arbol {
+
+        bottom: 3.5rem;
+    }
+
+    .cesped {
+        height: 6rem;
+        width: 110%;
+    }
+    .border-top{
+        --bs-border-width: 0rem;
+        --bs-border-color:none;
+    }
+    .p-5 {
+        padding: 0rem !important;
+    }
+}
