@@ -1,20 +1,19 @@
-const audioMuted = document.getElementById('audio');
+const audio = document.getElementById('audio');
 const reproduciendoSonido = document.getElementById('audio-background');
 let estadoAudio = 'muted';
-audioMuted.addEventListener('click', function(){
+//Musica background
+audio.addEventListener('click', function(){
     if(estadoAudio === 'muted'){
         reproduciendoSonido.play();
-        audioMuted.src = '../img/audio-active.png';
+        audio.src = '../img/audio-active.png';
         estadoAudio = 'playing';
     }else{
         reproduciendoSonido.pause();
-        audioMuted.src = '../img/audio-muted.png';
+        audio.src = '../img/audio-muted.png';
         estadoAudio = 'muted';
     }
     
 });
-
-
 
 /*
 Precios del Distribuidor
