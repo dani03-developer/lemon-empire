@@ -127,6 +127,55 @@ main{
     height: 3rem;
 }
 /*Home*/
+#popup{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: variables.$color-base;
+    width: 80%;
+    padding: 2rem;
+    border: .2rem solid variables.$color-negro;
+    border-radius: 1rem;
+    z-index: 3;
+    visibility: visible;
+}
+#popup.desactive{
+    visibility: hidden;
+} 
+.personaje-popup{
+    height: 6rem;
+    left: 0;
+    position: absolute;
+    bottom: 12rem;
+}
+.bru{
+    visibility: visible;
+    filter: blur(20px);
+    pointer-events: none;
+    user-select: none;
+}
+
+.form-nombre{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    input{
+        background-color: transparent;
+        border: none;
+        border-bottom:  .2rem solid variables.$color-negro ;
+    }
+    button{
+        border: none;
+        background-color: variables.$color-marron-oscuro;
+        color: variables.$color-base;
+        width: 60%;
+        padding: .7rem .3rem;
+        border-radius: 2rem;
+    }
+}
 .container-moneda{
     padding-right: 1rem;
     p{
@@ -139,7 +188,7 @@ main{
     height: 2.2rem;
 }
 #menu-home{
-    gap: 2rem;
+    gap: 4rem;
 }
 .cabeceraMenu{
     height: 25%;
@@ -169,9 +218,33 @@ main{
 }
 
 #dialogo{
-    height: 20%;
+    visibility: hidden;
+    display: none;
+    height: auto;
     width: 80%;
     background-color: variables.$color-base;
     border: .2rem solid variables.$color-negro;
     border-radius: .4rem;
+    position: relative;
+    padding-left: 5rem;
+    /* arriba | derecha | abajo | izquierda */
+    padding: 2rem 1rem 0 1rem;
+}
+.personaje{
+    position: absolute;
+    height: 4rem;
+    left: 0;
+    bottom: 90%;
+}
+
+#dialogo.scale-up-center{
+    animation:scale-up-center 0.3s; 
+} 
+@keyframes scale-up-center{ 
+    0%{
+        transform:scale(.5)
+    } 
+    100%{
+        transform:scale(1)
+    } 
 }

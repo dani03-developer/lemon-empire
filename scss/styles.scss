@@ -16,6 +16,7 @@ body{
     color: variables.$color-texto;
 }
 
+
 @media (min-width: 376px) {
     .tienda-jugos{
        width: 80%;
@@ -60,6 +61,9 @@ body{
     }
     .imagen-sol{
     height: 4rem;
+    }
+    #popup{
+        width: 50%;
     }
 }
 
@@ -125,6 +129,14 @@ body{
         height: auto;
         width: auto;
     }
+    #popup{
+        width: 40%;
+    }
+    .form-nombre{
+    button{
+        width: 30%;
+    }
+}
 }
 
 // X-Large devices (large desktops, 1200px and up)
