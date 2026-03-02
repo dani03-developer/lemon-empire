@@ -23,7 +23,7 @@ body{
        padding-bottom: 6rem;
     }
 
-    #arbol{
+    #arbolDos{
         bottom: 10rem;
         height: 22rem;
         right: 8rem;
@@ -35,7 +35,7 @@ body{
        padding-bottom: 4rem;
     }
    
-      #arbol{
+      #arbolDos{
         bottom: 10rem;
         height: 18rem;
         left: 0;
@@ -47,7 +47,7 @@ body{
        padding-bottom: 2rem;
        width: 55%;
    }
-    #arbol{
+    #arbolDos{
         left: 0;
         bottom: 10rem;
         height: 20rem;
@@ -81,13 +81,18 @@ body{
         width: 60%;
        padding-bottom: 3rem;
     }
-     #arbol{
+     #arbolDos{
         left: 0;
         bottom: 10rem;
         height: 20rem;
     }
     #menuReal, #dialogo{
         width: 50%;
+    }
+
+    .grid-inventario{
+        grid-template-columns: repeat(4, 1fr);
+        margin: 2rem;
     }
 }
 
@@ -136,7 +141,10 @@ body{
     button{
         width: 30%;
     }
-}
+    }
+    .grid-inventario{
+        grid-auto-rows: 5rem;
+    }
 }
 
 // X-Large devices (large desktops, 1200px and up)
@@ -193,7 +201,7 @@ body{
         font-size: .85rem;
     }
 
-    #arbol {
+    #arbolDos {
 
         bottom: 3.5rem;
     }

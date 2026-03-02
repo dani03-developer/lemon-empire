@@ -2,6 +2,7 @@ const audio = document.getElementById('audio');
 const reproduciendoSonido = document.getElementById('audio-background');
 let estadoAudio = 'muted';
 //Musica background
+
 audio.addEventListener('click', function(){
     if(estadoAudio === 'muted'){
         reproduciendoSonido.play();

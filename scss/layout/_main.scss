@@ -96,7 +96,7 @@ main{
     position: fixed; // Fixed se pega a la ventana, no al contenido
     z-index: 1;
 }
-#arbol{
+#arbolDos{
     z-index: 2;
     position: fixed;
     bottom: 10rem;
@@ -139,7 +139,7 @@ main{
     padding: 2rem;
     border: .2rem solid variables.$color-negro;
     border-radius: 1rem;
-    z-index: 3;
+    z-index: 4;
     visibility: visible;
 }
 #popup.desactive{
@@ -247,4 +247,54 @@ main{
     100%{
         transform:scale(1)
     } 
+}
+#inventario{
+    cursor: pointer;
+}
+.cabeceraInventario{
+    position: relative;
+    h2{
+        margin-top: .5rem;
+        font-size: 1.2rem;
+    }
+    button{
+        position: absolute;
+        right: 1rem;
+        background: none;
+        border:  .15rem solid variables.$color-negro;
+        border-radius: .4rem;
+        width: 1.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+/*Inventario*/
+.grid-inventario{ 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 4rem;
+    gap: .6rem;
+    margin: 1.5rem;
+}
+.container-producto{
+    @extend %flexCenter;
+    position: relative;
+    border: .15rem solid variables.$color-negro;
+    border-radius: .4rem;
+}
+.producto{
+    height: 70%;
+    width: auto;
+}
+.contador{
+    @extend %flexCenter;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 35%;
+    p{
+     margin-bottom: 0;
+     font-weight: bold;
+    }
 }
