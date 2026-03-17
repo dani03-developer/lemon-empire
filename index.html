@@ -12,14 +12,22 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <main>
-        <section class="contenedor">
+     <section id="popup">
+        <img class="personaje-popup" src="./img/gato.png" alt="">
+        <form class="form-nombre">
+            <label for="">Ingresa tu nombre:</label>
+            <input type="text" id="input-nombre">
+            <button type="button" onclick="cerrarPopup()">Confirmar</button>
+        </form>
+    </section>
+    <main class="bru">
+        <section id="main-screen" class="contenedor screens">
            <section class="cabecera">
                 <section class="circulo"></section>
                 <section class="circulo"></section>
             </section>
             <section class="container-audio">
-                <img id="audio" src="../img/audio-muted.png" alt="">
+                <img class="audio" src="./img/audio-muted.png" alt="">
                 <audio id="audio-background" loop>
                     <source src="./audio/background-music.mp3">
                 </audio>
@@ -28,17 +36,117 @@
              <section id="menu">
                 <h1>Lemon Empire <img class="limon-titulo" src="./img/limon.png" alt=""></h1>
                 <section class="botones">
-                        <a class="boton-menu" id="boton-start" href="./pages/dias.html">Start</a>
+                        <a class="boton-menu" id="boton-start" onclick="start()">Start</a>
                         <a class="boton-menu" id="boton-manual">¿Cómo jugar?</a>
                         <a class="boton-menu" id="boton-salir">Salir</a>
                 </section>
             </section>
             <section class="imagen-menu">
-                <img class="tienda-jugos" src="./img/juice-shop.png" alt="">
+                <img id="tienda-jugos" src="./img/juice-shop.png" alt="">
                 <img class="arbolUno d-none d-lg-block position-absolute end-0" src="./img/arbolUno.png">
             </section>
             </section>
             <section class="d-none d-lg-block p-5 border-top"></section>
+        </section>
+        <!--CAMBIO DE PANTALLA DIAS-->
+         <section id="day-screen" class="contenedor screens">
+           <section class="cabecera">
+                <section class="circulo"></section>
+                <section class="circulo"></section>
+            </section>
+            <section class="contenedor-principal-dias">
+                <h1 id="dias"><img class="imagen-sol" src="../img/sol.png" alt=""> Día 1</h1>
+            </section>
+        </section>
+        <!--CAMBIO DE PANTALLA-->
+         <section id="game-screen" class="contenedor screens">
+           <section class="cabecera">
+                <section class="circulo"></section>
+                <section class="circulo"></section>
+            </section>
+            <section class="container-audio-moneda d-flex justify-content-between align-items-center">
+                <section>
+                    <img class="audio" src="./img/audio-muted.png" alt="">
+                     <audio class="audio-background" loop>
+                    <source src="./audio/background-music.mp3">
+                     </audio>
+                </section>
+                <section class="container-moneda d-flex flex-row gap-2 ">
+                    <img id="moneda" src="./img/moneda.png" alt="">
+                    <p id="dinero"></p>
+                </section>
+            </section>
+            <section class="contenido-principal">
+                <section id="menu-home">
+                    <section id="menuReal">
+                        <section class="cabeceraMenu border-bottom d-flex justify-content-center aling-items-center">
+                            <h2>Menú</h2>
+                        </section>
+                        <ol>
+                            <li onclick="verInventario()" id="inventario">Ver Inventario</li>
+                            <li onclick="tiendaDistribuidor()"  id="insumos">Comprar Insumos</li>
+                            <li id="venderBebidas">Vender Bebidas</li>
+                            <li><a href="./index.html">Volver al inicio</a></li>
+                        </ol>
+                    </section>
+                   <section id="dialogo">
+                        <img class="personaje" src="./img/gato.png" alt="">
+                        <p id="mensaje"></p>
+                        <audio id="audio-notificacion">
+                            <source src="./audio/notificacion.mp3">
+                        </audio>
+                    </section>
+                </section>
+                <section class="imagen-menu">
+                    <img id="tienda-jugos" src="./img/juice-shop.png" alt="">
+                    <img class="arbolUno d-none d-lg-block position-absolute end-0" src="./img/arbolUno.png">
+                </section>
+            </section>
+            <section class="d-none d-lg-block p-5 border-top"></section>
+        </section>
+
+        <!--CAMBIO DE PANTALLA DISTRIBUIDOR-->
+        <section id="tienda-distribuidor" class="contenedor screens">
+                 <section class="cabecera">
+                <section class="circulo"></section>
+                <section class="circulo"></section>
+            </section>
+            <section class="container-audio-moneda d-flex justify-content-between align-items-center">
+                <section>
+                    <img class="audio" src="./img/audio-muted.png" alt="">
+                     <audio class="audio-background" loop>
+                    <source src="./audio/background-music.mp3">
+                     </audio>
+                </section>
+                <section class="container-moneda d-flex flex-row gap-2 ">
+                    <img id="moneda" src="./img/moneda.png" alt="">
+                    <p id="dinero"></p>
+                </section>
+            </section>
+
+             <section class="contenido-principal">
+                    <section class="primeraSeccion">
+                            <section class="seccionDialogo">
+                                <section id="dialogo-distribuidor">
+                                <img class="personaje" src="./img/oso.png" alt="">
+                                <p id="mensaje-distribuidor"></p>
+                                <audio id="audio-notificacion">
+                                    <source src="./audio/notificacion.mp3">
+                                </audio>
+                                </section>
+                            </section>
+                         
+                        <section class="imagen-menu">
+                            <img id="tienda-jugos" src="./img/distribuidor.png" alt="">
+                        </section>
+                    </section>
+                  <section class="segundaSeccion d-none d-xl-block w-50 ">
+                        <img src="./img/anana.png" alt="">
+                  </section>
+            </section>
+            <section class="d-none d-lg-block p-5 border-top"></section>
+
+
         </section>
     </main>
     <img id="arbolDos" src="./img/arbolDos.png" alt="">
@@ -46,6 +154,12 @@
     <img class="cesped" src="./img/cesped.png" alt="">
     
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="./javaScript/main.js"></script>
+     <script src="../javaScript/audio.js"></script>
+    <script src="../javaScript/storage.js"></script>
+    <script src="../javaScript/logic.js"></script>
+    <script src="../javaScript/ui.js"></script>
+    <script src="../javaScript/main.js"></script>
+    
+
 </body>
 </html>

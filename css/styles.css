@@ -50,7 +50,7 @@ main {
   align-items: center;
 }
 
-#audio {
+.audio {
   height: 2.2rem;
   padding-left: 2rem;
 }
@@ -97,7 +97,7 @@ main {
   align-items: end;
 }
 
-.tienda-jugos {
+#tienda-jugos {
   width: 80%;
   height: fit-content;
   padding-bottom: 3rem;
@@ -231,6 +231,8 @@ main {
   display: flex;
   flex-direction: column;
   height: auto;
+  visibility: visible;
+  display: block;
   width: 80%;
   background-color: #FAF4E6;
   border: 0.2rem solid #3d3a3a;
@@ -245,7 +247,11 @@ main {
   color: #1e1e1e;
 }
 
-#dialogo {
+.hidden {
+  display: none !important;
+}
+
+#dialogo, #dialogo-distribuidor {
   visibility: hidden;
   display: none;
   height: auto;
@@ -266,7 +272,7 @@ main {
   bottom: 90%;
 }
 
-#dialogo.scale-up-center {
+#dialogo.scale-up-center, #dialogo-tienda.scale-up-center {
   animation: scale-up-center 0.3s;
 }
 
@@ -278,7 +284,7 @@ main {
     transform: scale(1);
   }
 }
-#inventario {
+#inventario, #venderBebidas, #comprarInsumos {
   cursor: pointer;
 }
 
@@ -332,6 +338,50 @@ main {
   font-weight: bold;
 }
 
+/*Distribuidor*/
+.modo-distribuidor .contenido-principal {
+  justify-content: end;
+}
+.modo-distribuidor #tienda-jugos {
+  width: 95%;
+}
+.modo-distribuidor .cesped {
+  width: 140%;
+  height: 10rem;
+  left: auto;
+  right: 0;
+}
+.modo-distribuidor #arbolDos {
+  left: auto !important;
+  right: 0;
+  bottom: 8rem;
+  height: 20rem;
+}
+.modo-distribuidor .primeraSeccion {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  flex: 1;
+  margin-top: 1rem;
+  gap: 2rem;
+}
+.modo-distribuidor .seccionDialogo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modo-distribuidor #dialogoDistribuidor {
+  height: fit-content;
+}
+.modo-distribuidor .imagen-menu {
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -344,9 +394,8 @@ body {
 }
 
 @media (min-width: 376px) {
-  .tienda-jugos {
+  #tienda-jugos {
     width: 80%;
-    padding-bottom: 6rem;
   }
   #arbolDos {
     bottom: 10rem;
@@ -355,7 +404,7 @@ body {
   }
 }
 @media (min-width: 413px) {
-  .tienda-jugos {
+  #tienda-jugos {
     padding-bottom: 4rem;
   }
   #arbolDos {
@@ -363,10 +412,18 @@ body {
     height: 18rem;
     left: 0;
   }
+  .modo-distribuidor #arbolDos {
+    left: auto;
+    right: 0;
+    height: 30rem;
+  }
+  .modo-distribuidor #tienda-jugos {
+    width: 80%;
+  }
 }
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {
-  .tienda-jugos {
+  #tienda-jugos {
     padding-bottom: 2rem;
     width: 55%;
   }
@@ -388,15 +445,34 @@ body {
   #popup {
     width: 50%;
   }
+  #dialogo {
+    width: 70%;
+  }
+  .modo-distribuidor .cesped {
+    width: 120%;
+    height: 15rem;
+  }
+  .modo-distribuidor #arbolDos {
+    left: auto;
+    right: 0;
+    bottom: 10rem;
+    height: 30rem;
+  }
+  .modo-distribuidor #dialogo-distribuidor {
+    width: 60%;
+  }
+  .modo-distribuidor #tienda-jugos {
+    width: 70%;
+  }
 }
 @media (min-width: 768px) {
-  #audio {
+  .audio {
     height: 2.7rem;
   }
   #menu h1 {
     font-size: 3rem;
   }
-  .tienda-jugos {
+  #tienda-jugos {
     width: 60%;
     padding-bottom: 3rem;
   }
@@ -412,12 +488,25 @@ body {
     grid-template-columns: repeat(4, 1fr);
     margin: 2rem;
   }
+  .modo-distribuidor #tienda-jugos {
+    width: 80%;
+  }
+  .modo-distribuidor .cesped {
+    width: 120%;
+    height: 15rem;
+  }
+  .modo-distribuidor #arbolDos {
+    left: auto;
+    right: 0;
+    bottom: 10rem;
+    height: 30rem;
+  }
 }
 @media (min-width: 992px) {
   .contenedor {
-    height: 97vh;
+    height: auto;
   }
-  #audio {
+  .audio {
     height: 3.2rem;
     padding-left: 3rem;
   }
@@ -427,7 +516,7 @@ body {
   .imagen-menu {
     justify-content: start;
   }
-  .tienda-jugos {
+  #tienda-jugos {
     padding-bottom: 0rem;
     width: 90%;
   }
@@ -459,9 +548,17 @@ body {
   .grid-inventario {
     grid-auto-rows: 5rem;
   }
+  .modo-distribuidor .primeraSeccion {
+    margin-top: 0;
+    gap: 1rem;
+    width: 50%;
+  }
+  .modo-distribuidor #tienda-jugos {
+    width: 60%;
+  }
 }
 @media (min-width: 1400px) {
-  .tienda-jugos {
+  #tienda-jugos {
     width: 70%;
   }
   .arbolUno {
@@ -489,7 +586,7 @@ body {
   .imagen-menu {
     align-items: end;
   }
-  .tienda-jugos {
+  #tienda-jugos {
     width: 85%;
     height: auto;
     padding-bottom: 0.1rem;

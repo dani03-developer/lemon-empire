@@ -18,9 +18,8 @@ body{
 
 
 @media (min-width: 376px) {
-    .tienda-jugos{
+    #tienda-jugos{
        width: 80%;
-       padding-bottom: 6rem;
     }
 
     #arbolDos{
@@ -30,8 +29,10 @@ body{
     }
 
 }
+
+
 @media (min-width: 413px){
-    .tienda-jugos{
+    #tienda-jugos{
        padding-bottom: 4rem;
     }
    
@@ -40,10 +41,21 @@ body{
         height: 18rem;
         left: 0;
     }
+    .modo-distribuidor {
+         #arbolDos {
+            left: auto;
+            right: 0;
+            height: 30rem;
+        }
+        #tienda-jugos {
+        width: 80%;
+        }
+       
+    }
 }
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {
-    .tienda-jugos{
+    #tienda-jugos{
        padding-bottom: 2rem;
        width: 55%;
    }
@@ -65,11 +77,35 @@ body{
     #popup{
         width: 50%;
     }
-}
+    #dialogo{
+        width: 70%;
+    }
+     .modo-distribuidor {
+        .cesped {
+             width: 120%;
+             height: 15rem;
+
+        }
+        #arbolDos {
+            left: auto;
+            right: 0;
+            bottom: 10rem;
+            height: 30rem;
+        }
+        #dialogo-distribuidor{
+            width: 60%;
+        }
+        #tienda-jugos {
+        width: 70%;
+        }
+        
+    }
+} 
+
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-    #audio{
+    .audio{
     height: 2.7rem;
     }
     #menu{
@@ -77,7 +113,7 @@ body{
             font-size: 3rem;
         }
     }
-    .tienda-jugos{
+    #tienda-jugos{
         width: 60%;
        padding-bottom: 3rem;
     }
@@ -94,14 +130,31 @@ body{
         grid-template-columns: repeat(4, 1fr);
         margin: 2rem;
     }
+    .modo-distribuidor {
+        #tienda-jugos {
+        width: 80%;
+        }
+        .cesped {
+             width: 120%;
+             height: 15rem;
+
+        }
+         #arbolDos {
+            left: auto;
+            right: 0;
+            bottom: 10rem;
+            height: 30rem;
+        }
+        
+    }
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
     .contenedor{
-        height: 97vh;
+        height: auto;
     }
-    #audio{
+    .audio{
     height: 3.2rem;
     padding-left: 3rem;
     }
@@ -111,7 +164,7 @@ body{
     .imagen-menu{
         justify-content: start;
     }
-   .tienda-jugos{
+   #tienda-jugos{
             padding-bottom: 0rem;
             width: 90%;
         }
@@ -145,6 +198,16 @@ body{
     .grid-inventario{
         grid-auto-rows: 5rem;
     }
+    .modo-distribuidor{
+        .primeraSeccion{
+        margin-top: 0;
+        gap: 1rem;
+        width: 50%;
+     }
+     #tienda-jugos{
+        width: 60%;
+     }
+    }
 }
 
 // X-Large devices (large desktops, 1200px and up)
@@ -153,7 +216,7 @@ body{
 
 // XX-Large devices (larger desktops, 1400px and up)
 @media (min-width: 1400px) {
-    .tienda-jugos {
+    #tienda-jugos {
         width: 70%;
     }
  .arbolUno{
@@ -185,7 +248,7 @@ body{
     .imagen-menu {
         align-items: end;
     }
-   .tienda-jugos {
+   #tienda-jugos {
             width: 85%;
             height: auto;
             padding-bottom: .1rem;

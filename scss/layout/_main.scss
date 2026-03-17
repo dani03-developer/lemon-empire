@@ -38,7 +38,7 @@ main{
     display: flex;
     align-items: center;
 }
-#audio{
+.audio{
     height: 2.2rem;
     padding-left: 2rem;
 }
@@ -81,7 +81,7 @@ main{
     justify-content: center;
     align-items: end;
 }
-.tienda-jugos{
+#tienda-jugos{
        width: 80%;
        height: fit-content;
        padding-bottom: 3rem;
@@ -201,6 +201,8 @@ main{
     display: flex;
     flex-direction: column;
     height: auto;
+    visibility: visible;
+    display: block;
     width: 80%;
     background-color: variables.$color-base;
     border: .2rem solid variables.$color-negro;
@@ -216,8 +218,10 @@ main{
         }
     }
 }
-
-#dialogo{
+.hidden {
+    display: none !important;
+}
+#dialogo, #dialogo-distribuidor{
     visibility: hidden;
     display: none;
     height: auto;
@@ -237,7 +241,7 @@ main{
     bottom: 90%;
 }
 
-#dialogo.scale-up-center{
+#dialogo.scale-up-center, #dialogo-tienda.scale-up-center{
     animation:scale-up-center 0.3s; 
 } 
 @keyframes scale-up-center{ 
@@ -248,7 +252,7 @@ main{
         transform:scale(1)
     } 
 }
-#inventario{
+#inventario, #venderBebidas, #comprarInsumos{
     cursor: pointer;
 }
 .cabeceraInventario{
@@ -296,5 +300,51 @@ main{
     p{
      margin-bottom: 0;
      font-weight: bold;
+    }
+}
+/*Distribuidor*/
+.modo-distribuidor {
+    .contenido-principal{
+        justify-content: end;
+    }
+    #tienda-jugos {
+        width: 95%;
+    }
+    .cesped {
+        width: 140%;
+        height: 10rem;
+        left: auto;
+        right: 0;
+    }
+    #arbolDos {
+        left: auto !important; 
+        right: 0;
+        bottom: 8rem;
+        height: 20rem;
+    }
+    .primeraSeccion{
+        display: flex;
+        flex-direction: column;
+        justify-content:  end;
+        align-items: center;
+        flex: 1;
+        margin-top: 1rem;
+        gap: 2rem;
+     }
+    .seccionDialogo{
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+    #dialogoDistribuidor{
+        height: fit-content;
+    }
+    .imagen-menu{
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
     }
 }
