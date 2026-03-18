@@ -364,4 +364,53 @@ main{
         text-align: center;
     }
 }
-
+.grid-distribuidor{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: .6rem;
+    margin: 1rem;
+}
+.container-producto-distribuidor{
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: .12rem solid variables.$color-negro;
+    border-radius: .4rem;
+    img{
+        height: 2rem;
+        margin-left: .5rem;
+    }
+    gap: .7rem;
+}
+.nombre-descripcion-producto{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    /* arriba | derecha | abajo | izquierda */
+    padding: .5rem 0 .5rem 0;
+    p{
+        font-size: 0.7rem;
+        font-weight: bold;
+        margin-bottom: .3rem
+    }
+    a{
+        font-size: 0.6rem;
+        font-weight: bold;
+        img{
+            width: .6rem;
+            height: auto;
+            margin-left: 0;
+        }
+    }
+}
+#boton-agregar-carrito{
+    height: auto;
+    /* arriba | derecha | abajo | izquierda */
+    padding: 0 .3rem 0 .3rem;
+    width:fit-content;
+    background-color: variables.$color-marron-claro;
+    border: .10rem solid variables.$color-marron-oscuro;
+    border-radius: .1rem;
+    
+}

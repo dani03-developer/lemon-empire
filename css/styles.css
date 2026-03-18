@@ -398,6 +398,61 @@ main {
   text-align: center;
 }
 
+.grid-distribuidor {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto;
+  gap: 0.6rem;
+  margin: 1rem;
+}
+
+.container-producto-distribuidor {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: 0.12rem solid #3d3a3a;
+  border-radius: 0.4rem;
+}
+.container-producto-distribuidor img {
+  height: 2rem;
+  margin-left: 0.5rem;
+}
+.container-producto-distribuidor {
+  gap: 0.7rem;
+}
+
+.nombre-descripcion-producto {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  /* arriba | derecha | abajo | izquierda */
+  padding: 0.5rem 0 0.5rem 0;
+}
+.nombre-descripcion-producto p {
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+.nombre-descripcion-producto a {
+  font-size: 0.6rem;
+  font-weight: bold;
+}
+.nombre-descripcion-producto a img {
+  width: 0.6rem;
+  height: auto;
+  margin-left: 0;
+}
+
+#boton-agregar-carrito {
+  height: auto;
+  /* arriba | derecha | abajo | izquierda */
+  padding: 0 0.3rem 0 0.3rem;
+  width: fit-content;
+  background-color: #E79F5B;
+  border: 0.1rem solid #8B4C27;
+  border-radius: 0.1rem;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -480,6 +535,12 @@ body {
   .modo-distribuidor #tienda-jugos {
     width: 70%;
   }
+  #segundaSeccion {
+    width: 65%;
+  }
+  .grid-distribuidor {
+    margin: 2rem;
+  }
 }
 @media (min-width: 768px) {
   .audio {
@@ -516,6 +577,9 @@ body {
     right: 0;
     bottom: 10rem;
     height: 30rem;
+  }
+  #segundaSeccion {
+    width: 50%;
   }
 }
 @media (min-width: 992px) {

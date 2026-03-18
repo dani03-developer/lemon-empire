@@ -17,6 +17,7 @@ const inventarioAlmacenado = obtenerInventario();
 const textoTienda = document.getElementById('mensaje-distribuidor');
 const cuadroDialogo = document.getElementById('dialogo-distribuidor');
 const segundaSeccion = document.getElementById('segundaSeccion');
+const catalogoDistribuidorAlmacenado = obtenerCatalogoDistribuidor();
 actualizarCapital();
 actualizarDia();
 cargarProductosDistribuidor(diaActual);
@@ -58,7 +59,7 @@ function verInventario(){ //solo muestra
         </section>
         <section class="grid-inventario"></section>
     `;
-     popup.style.padding = "0";
+    popup.style.padding = "0";
     popup.style.minHeight = "50%";
     popup.style.borderRadius = ".4rem";
     popup.classList.remove('desactive');
@@ -89,18 +90,35 @@ function cerrarInventario(){
 /*Comprar insumos */
 const verProductosDistribuidor = () =>{
     cuadroDialogo.style.visibility = "hidden";
-            cuadroDialogo.style.display = "none";
+    cuadroDialogo.style.display = "none";
         segundaSeccion.classList.remove('desactive');
          segundaSeccion.innerHTML = `
         <section class="cabeceraInventario border-bottom d-flex justify-content-center align-items-center">
             <h2>Catálogo</h2>
             <button type="button" onclick="cerrarCatalogo()">✕</button>
         </section>
-        <section class="grid-Distribuidor"></section>
+        <section class="grid-distribuidor"></section>
     `;
     segundaSeccion.style.padding = "0";
     segundaSeccion.style.minHeight = "50%";
     segundaSeccion.style.borderRadius = ".4rem";
+    
+     if(catalogoDistribuidorAlmacenado.length>0){
+    const grid = segundaSeccion.querySelector('.grid-distribuidor');
+    catalogoDistribuidorAlmacenado.forEach(i => {
+        let nuevoProducto = document.createElement('section'); //creamos un nuevo section para los productos
+        nuevoProducto.classList.add('container-producto-distribuidor');
+        nuevoProducto.innerHTML = `
+                <img class="producto" src="./img/${i.producto}.png" alt="">
+                    <section class="nombre-descripcion-producto">
+                        <p>${i.producto}-${i.cantidad}</p>
+                        <a id="boton-agregar-carrito" onclick="agregarAlCarrito()"><img src="../img/moneda.png"> $ ${i.precio}</a>
+                    </section>
+        `;
+        grid.append(nuevoProducto);
+        });
+    }
+
 
 };
 function cerrarCatalogo(){

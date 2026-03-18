@@ -3,8 +3,7 @@ let inventario =[];
 let carritoCompra = [];
 let nombreDelJugador = obtenerNombre();
 let capitalActual = capitalInicial;
-let nuevoProducto;
-let diaActual = 1;
+let diaActual = 10;
 const mensaje = (nombre) => [
   `¡Hola ${nombre}! ¡Qué bueno que llegaste! Soy Limo 😺, tu socio. El sol está pegando fuerte y la gente tiene sed... tu objetivo es administrar el puesto de limonada y ganar dinero. Para eso, tendrás que comprar ingredientes, preparar limonada y venderla a los clientes. ¡Buena suerte!`,
   `¡Rayos! ⚡ El depósito está vacío, ${nombre}. Si no compramos ingredientes pronto, solo podremos venderles aire fresco a los clientes...¡Vamos a ver qué tiene el proveedor!"`,
@@ -15,50 +14,49 @@ const mensaje = (nombre) => [
 //Catalogo de proveedores
 const catalogoDistribuidor = [
     { //clave : valor
-      producto: "Limon", precio: 500}, //unidad
-    { producto: "Azucar", precio: 1000}, // 1kg => 1000g
-    { producto: "Agua", precio: 2000}, //6000ml => 6L
-    { producto: "Vasos", precio: 100},// Pack de 10 unidades
+      producto: "Limon", cantidad: "c/u",precio: 500}, //unidad
+    { producto: "Azucar",cantidad: "1kg", precio: 1000}, // 1kg => 1000g
+    { producto: "Agua",cantidad: "4Lts", precio: 2000}, //6000ml => 6L
+    { producto: "Vasos",cantidad: "c/u", precio: 100},// Pack de 10 unidades
+    {producto: "Hielo",cantidad: "4kg", precio: 1500},
+    {producto: "Naranja",cantidad: "c/u", precio: 700},
+    {producto: "Menta", cantidad: "c/u",precio: 80},
+    {producto: "Manzana",cantidad: "c/u", precio: 800},
+    {producto: "Anana",cantidad: "c/u", precio: 1200},
+
 ];
-let catalogoDistribuidorActualizado = [...catalogoDistribuidor]; //Hacemos una copia del catalogo de proveedores para actualizarlo sin modificar el original 
+let catalogoDistribuidorActualizado = []; //Hacemos una copia del catalogo de proveedores para actualizarlo sin modificar el original 
 
 //Simulamos la llegada de productos nuevos según el día de la semana
  function cargarProductosDistribuidor(diaActual) {
     switch(diaActual){
     case 1:
-        guardarCatalogoDistribuidor(catalogoDistribuidor);
+        for(i =0; i<=3; i++){
+            catalogoDistribuidorActualizado.push(catalogoDistribuidor[i]); 
+        }
+        guardarCatalogoDistribuidor(catalogoDistribuidorActualizado);
     break;
     case 3:
-        nuevoProducto = {producto: "Hielo", precio: 1500}; 
-        catalogoDistribuidorActualizado.push(nuevoProducto); 
-        //nuevaBebida = {tipo: "Limonada con Hielo", ingredientes:[{ingrediente: "Limon", cantidad: 1}, {ingrediente: "Azucar", cantidad: 15}, {ingrediente: "Agua", cantidad: 300}, {ingrediente: "Vaso", cantidad: 1}, {ingrediente: "Hielo", cantidad: 2}]};
-        //catalogoBebidasActualizado.push(nuevaBebida); 
+        for(i =0; i<=4; i++){
+            catalogoDistribuidorActualizado.push(catalogoDistribuidor[i]); 
+        }
         guardarCatalogoDistribuidor(catalogoDistribuidorActualizado);
     break;
     case 5:
-        nuevoProducto = {producto: "Naranja", precio: 700};
-        catalogoDistribuidorActualizado.push(nuevoProducto);
-        nuevoProducto = {producto: "Menta", precio: 80};
-        catalogoDistribuidorActualizado.push(nuevoProducto);
+       for(i =0; i<=6; i++){
+            catalogoDistribuidorActualizado.push(catalogoDistribuidor[i]); 
+        }
         guardarCatalogoDistribuidor(catalogoDistribuidorActualizado);
-        //nuevaBebida = {tipo: "Limonada con Menta", ingredientes:[{ingrediente: "Limon", cantidad: 1}, {ingrediente: "Azucar", cantidad: 15}, {ingrediente: "Agua", cantidad: 300}, {ingrediente: "Vaso", cantidad: 1}, {ingrediente: "Menta", cantidad: 3}]};
-        //catalogoBebidasActualizado.push(nuevaBebida);
-        //nuevaBebida = {tipo: "Jugo de Naranja", ingredientes:[{ingrediente: "Azucar", cantidad: 15}, {ingrediente: "Agua", cantidad: 200}, {ingrediente: "Vaso", cantidad: 1}, {ingrediente: "Naranja", cantidad: 2}]};
-        //catalogoBebidasActualizado.push(nuevaBebida);
     break;
     case 7:
-        nuevoProducto = {producto: "Manzana", precio: 800};
-        catalogoDistribuidorActualizado.push(nuevoProducto);
-        nuevoProducto = {producto: "Ananá", precio: 1200};
-        catalogoDistribuidorActualizado.push(nuevoProducto);
-        //nuevaBebida = {tipo: "Jugo de Manzana", ingredientes:[{ingrediente: "Azucar", cantidad: 15}, {ingrediente: "Agua", cantidad: 200}, {ingrediente: "Vaso", cantidad: 1}, {ingrediente: "Manzana", cantidad: 2}]};
-        //catalogoBebidasActualizado.push(nuevaBebida);
-        //nuevaBebida = {tipo: "Jugo de Ananá", ingredientes:[{ingrediente: "Azucar", cantidad: 15}, {ingrediente: "Agua", cantidad: 200}, {ingrediente: "Vaso", cantidad: 1}, {ingrediente: "Ananá", cantidad: 2}]};
-        //catalogoBebidasActualizado.push(nuevaBebida);
+        for(i =0; i<catalogoDistribuidor.length; i++){
+            catalogoDistribuidorActualizado.push(catalogoDistribuidor[i]); 
+        }
         guardarCatalogoDistribuidor(catalogoDistribuidorActualizado);
     break;
         default:
-             guardarCatalogoDistribuidor(catalogoDistribuidor);
+            catalogoDistribuidorActualizado = [...catalogoDistribuidor];
+             guardarCatalogoDistribuidor(catalogoDistribuidorActualizado);
 }
 }
 /*Actualizar Dias */
