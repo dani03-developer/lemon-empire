@@ -1,4 +1,3 @@
-
 // Pedir y verificar si tenemos el nombre del Usuario/ Jugador
 if(nombreDelJugador){
     popup.classList.add('desactive');

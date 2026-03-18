@@ -55,7 +55,7 @@
                 <section class="circulo"></section>
             </section>
             <section class="contenedor-principal-dias">
-                <h1 id="dias"><img class="imagen-sol" src="../img/sol.png" alt=""> Día 1</h1>
+                <h1 id="dias"></h1>
             </section>
         </section>
         <!--CAMBIO DE PANTALLA-->
@@ -73,7 +73,7 @@
                 </section>
                 <section class="container-moneda d-flex flex-row gap-2 ">
                     <img id="moneda" src="./img/moneda.png" alt="">
-                    <p id="dinero"></p>
+                    <p class="dinero"></p>
                 </section>
             </section>
             <section class="contenido-principal">
@@ -120,7 +120,7 @@
                 </section>
                 <section class="container-moneda d-flex flex-row gap-2 ">
                     <img id="moneda" src="./img/moneda.png" alt="">
-                    <p id="dinero"></p>
+                    <p class="dinero"></p>
                 </section>
             </section>
 
@@ -135,13 +135,15 @@
                                 </audio>
                                 </section>
                             </section>
-                         
+                         <section class="botonVerCatalogo d-lg-none">
+                        <a id="boton-catalogo" onclick="verProductosDistribuidor()">Ver Catálogo</a>
+                        </section>
                         <section class="imagen-menu">
                             <img id="tienda-jugos" src="./img/distribuidor.png" alt="">
                         </section>
                     </section>
-                  <section class="segundaSeccion d-none d-xl-block w-50 ">
-                        <img src="./img/anana.png" alt="">
+                  <section id="segundaSeccion" class="desactive">
+                        
                   </section>
             </section>
             <section class="d-none d-lg-block p-5 border-top"></section>

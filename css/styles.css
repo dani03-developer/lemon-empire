@@ -149,7 +149,7 @@ main {
 }
 
 /*Home*/
-#popup {
+#popup, #segundaSeccion {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -165,7 +165,7 @@ main {
   visibility: visible;
 }
 
-#popup.desactive {
+#popup.desactive, #segundaSeccion.desactive {
   visibility: hidden;
 }
 
@@ -272,7 +272,7 @@ main {
   bottom: 90%;
 }
 
-#dialogo.scale-up-center, #dialogo-tienda.scale-up-center {
+#dialogo.scale-up-center, #dialogo-distribuidor.scale-up-center {
   animation: scale-up-center 0.3s;
 }
 
@@ -380,6 +380,22 @@ main {
   flex-direction: column;
   justify-content: end;
   align-items: center;
+}
+.modo-distribuidor .botonVerCatalogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+.modo-distribuidor #boton-catalogo {
+  border: none;
+  background-color: #8B4C27;
+  color: #FAF4E6;
+  width: 60%;
+  padding: 0.7rem 0.3rem;
+  border-radius: 2rem;
+  text-align: center;
 }
 
 * {
@@ -555,6 +571,11 @@ body {
   }
   .modo-distribuidor #tienda-jugos {
     width: 60%;
+  }
+  .modo-distribuidor #segundaSeccion {
+    transform: translate(-25%, 0%);
+    width: 35%;
+    position: static;
   }
 }
 @media (min-width: 1400px) {

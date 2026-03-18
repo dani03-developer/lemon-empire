@@ -1,8 +1,9 @@
 const popup = document.getElementById('popup');
+const dias = document.getElementById('dias');
 const dialogo = document.getElementById('dialogo');
 const mensajeTexto= document.getElementById('mensaje');
 const audioNotificacion = document.getElementById('audio-notificacion');
-const dinero = document.getElementById('dinero');
+const dinero = document.querySelectorAll('.dinero');
 const comprarInsumos = document.getElementById('insumos');
 const tienda = document.getElementById('tienda-jugos');
 const menu = document.getElementById('menuReal');
@@ -13,6 +14,12 @@ const arbol = document.getElementById('arbolDos');
 const cielo = document.querySelector('.cielo');
 const imagenMenu = document.querySelector('.imagen-menu');
 const inventarioAlmacenado = obtenerInventario();
+const textoTienda = document.getElementById('mensaje-distribuidor');
+const cuadroDialogo = document.getElementById('dialogo-distribuidor');
+const segundaSeccion = document.getElementById('segundaSeccion');
+actualizarCapital();
+actualizarDia();
+cargarProductosDistribuidor(diaActual);
 const cambiarMensaje = (dialogo, texto, i) =>{
     dialogo.style.visibility = "visible";
     dialogo.style.display = "block";
@@ -80,13 +87,50 @@ function cerrarInventario(){
     }
 };
 /*Comprar insumos */
+const verProductosDistribuidor = () =>{
+    cuadroDialogo.style.visibility = "hidden";
+            cuadroDialogo.style.display = "none";
+        segundaSeccion.classList.remove('desactive');
+         segundaSeccion.innerHTML = `
+        <section class="cabeceraInventario border-bottom d-flex justify-content-center align-items-center">
+            <h2>Catálogo</h2>
+            <button type="button" onclick="cerrarCatalogo()">✕</button>
+        </section>
+        <section class="grid-Distribuidor"></section>
+    `;
+    segundaSeccion.style.padding = "0";
+    segundaSeccion.style.minHeight = "50%";
+    segundaSeccion.style.borderRadius = ".4rem";
+
+};
+function cerrarCatalogo(){
+        segundaSeccion.classList.add('desactive');
+        navegarA('game-screen');
+}
+const esDesktop = window.matchMedia('(min-width: 992px)');
+function ajustarInterfazDistribuidor(pantalla) {
+    if(pantalla.matches){
+        verProductosDistribuidor();
+        cuadroDialogo.style.visibility = "visible";
+        cuadroDialogo.style.display = "block";
+    }else{
+        if(!segundaSeccion.classList.contains('desactive')){
+            cuadroDialogo.style.visibility = "hidden";
+            cuadroDialogo.style.display = "none";
+        }else{
+            segundaSeccion.classList.add('desactive');
+        }
+
+    }
+}
 function tiendaDistribuidor(){
    navegarA('tienda-distribuidor');
    document.body.classList.add('modo-distribuidor');
    cesped.src = './img/cespedDos.png';
    arbol.src = './img/arbolUno.png';
-   const textoTienda = document.getElementById('mensaje-distribuidor');
-   const cuadroDialogo = document.getElementById('dialogo-distribuidor');
-   cambiarMensaje(cuadroDialogo,textoTienda, 2);
-   
+   esDesktop.addEventListener('change',ajustarInterfazDistribuidor);
+   ajustarInterfazDistribuidor(esDesktop);
+   setTimeout(() =>{
+        cambiarMensaje(cuadroDialogo,textoTienda, 2);
+    },500); 
 }

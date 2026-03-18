@@ -127,7 +127,7 @@ main{
     height: 3rem;
 }
 /*Home*/
-#popup{
+#popup, #segundaSeccion{
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -142,7 +142,7 @@ main{
     z-index: 4;
     visibility: visible;
 }
-#popup.desactive{
+#popup.desactive, #segundaSeccion.desactive{
     visibility: hidden;
 } 
 .personaje-popup{
@@ -241,7 +241,7 @@ main{
     bottom: 90%;
 }
 
-#dialogo.scale-up-center, #dialogo-tienda.scale-up-center{
+#dialogo.scale-up-center, #dialogo-distribuidor.scale-up-center{
     animation:scale-up-center 0.3s; 
 } 
 @keyframes scale-up-center{ 
@@ -347,4 +347,21 @@ main{
         justify-content: end;
         align-items: center;
     }
+    .botonVerCatalogo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
+    }
+    #boton-catalogo{
+        border: none;
+        background-color: variables.$color-marron-oscuro;
+        color: variables.$color-base;
+        width: 60%;
+        padding: .7rem .3rem;
+        border-radius: 2rem;
+        text-align: center;
+    }
 }
+
