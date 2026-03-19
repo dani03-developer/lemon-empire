@@ -3,7 +3,8 @@ let inventario =[];
 let carritoCompra = [];
 let nombreDelJugador = obtenerNombre();
 let capitalActual = capitalInicial;
-let diaActual = 10;
+let diaActual = 1;
+let cantidadItem = 1, total=0;
 const mensaje = (nombre) => [
   `¡Hola ${nombre}! ¡Qué bueno que llegaste! Soy Limo 😺, tu socio. El sol está pegando fuerte y la gente tiene sed... tu objetivo es administrar el puesto de limonada y ganar dinero. Para eso, tendrás que comprar ingredientes, preparar limonada y venderla a los clientes. ¡Buena suerte!`,
   `¡Rayos! ⚡ El depósito está vacío, ${nombre}. Si no compramos ingredientes pronto, solo podremos venderles aire fresco a los clientes...¡Vamos a ver qué tiene el proveedor!"`,
@@ -14,10 +15,10 @@ const mensaje = (nombre) => [
 //Catalogo de proveedores
 const catalogoDistribuidor = [
     { //clave : valor
-      producto: "Limon", cantidad: "c/u",precio: 500}, //unidad
-    { producto: "Azucar",cantidad: "1kg", precio: 1000}, // 1kg => 1000g
-    { producto: "Agua",cantidad: "4Lts", precio: 2000}, //6000ml => 6L
-    { producto: "Vasos",cantidad: "c/u", precio: 100},// Pack de 10 unidades
+      producto: "Limon", cantidad: "c/u",precio: 500}, 
+    { producto: "Azucar",cantidad: "1kg", precio: 1000}, 
+    { producto: "Agua",cantidad: "4Lts", precio: 2000}, 
+    { producto: "Vasos",cantidad: "c/u", precio: 100},
     {producto: "Hielo",cantidad: "4kg", precio: 1500},
     {producto: "Naranja",cantidad: "c/u", precio: 700},
     {producto: "Menta", cantidad: "c/u",precio: 80},
@@ -25,9 +26,9 @@ const catalogoDistribuidor = [
     {producto: "Anana",cantidad: "c/u", precio: 1200},
 
 ];
-let catalogoDistribuidorActualizado = []; //Hacemos una copia del catalogo de proveedores para actualizarlo sin modificar el original 
+let catalogoDistribuidorActualizado = []; 
 
-//Simulamos la llegada de productos nuevos según el día de la semana
+//Simulamos la llegada de productos nuevos según el día de la semana al 
  function cargarProductosDistribuidor(diaActual) {
     switch(diaActual){
     case 1:
@@ -71,12 +72,26 @@ let actualizarCapital = () => {
 };
 // Agregar productos al inventario
 let agregarInventario = (producto, cantidad) =>{ //agrega
-    let inventarioActual = obtenerInventario();
-     let productoInventarioEncontrado = inventarioActual.find(x => x.producto === producto);
+    inventario = obtenerInventario();
+     let productoInventarioEncontrado = inventario.find(x => x.producto === producto);
      if(productoInventarioEncontrado){
         productoInventarioEncontrado.cantidad += cantidad;
      }else{
-        inventarioActual.push({producto: producto, cantidad: cantidad});
+        inventario.push({producto: producto, cantidad: cantidad});
      }
-    guardarInventario(inventarioActual);
+    guardarInventario(inventario);
 };
+//Función para comprar insumos al distribuidor
+const agregarAlCarrito = (producto, precio) =>{
+    carritoCompra = obtenerItemCarrito();
+    let productoEncontrado = carritoCompra.find(x => x.producto === producto);
+    let totalProducto = cantidadItem*precio;
+    if(productoEncontrado){
+         productoEncontrado.cantidad+=cantidadItem;
+         productoEncontrado.total +=totalProducto;
+    }else{
+       carritoCompra.push({producto: producto, cantidad: cantidadItem, total: totalProducto});
+    }
+    enviarItemAlCarrio(carritoCompra);
+    document.getElementById('cantidad-carrito').innerText = `${carritoCompra.length}`; 
+}

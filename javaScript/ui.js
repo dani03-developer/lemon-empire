@@ -18,23 +18,19 @@ const textoTienda = document.getElementById('mensaje-distribuidor');
 const cuadroDialogo = document.getElementById('dialogo-distribuidor');
 const segundaSeccion = document.getElementById('segundaSeccion');
 const catalogoDistribuidorAlmacenado = obtenerCatalogoDistribuidor();
+/****************************************************************** */
+/***************PREPARATIVOS PARA EL INCIO ************************ */
+/****************************************************************** */
+navegarA('main-screen');
 actualizarCapital();
 actualizarDia();
 cargarProductosDistribuidor(diaActual);
-const cambiarMensaje = (dialogo, texto, i) =>{
-    dialogo.style.visibility = "visible";
-    dialogo.style.display = "block";
-    texto.innerText = mensaje(nombreDelJugador)[i];
-    dialogo.classList.add('scale-up-center');
-    audioNotificacion.play();
-};
 function navegarA(screenId) {
     const screens = document.querySelectorAll('.screens');
     screens.forEach(s => s.classList.add('hidden'));
     const verPantalla = document.getElementById(screenId);
     verPantalla.classList.remove('hidden');
 };
-navegarA('main-screen');
 function start(){
     navegarA('day-screen');
     arbol.classList.add('hidden');
@@ -48,12 +44,21 @@ function start(){
         cambiarMensaje(dialogo,mensajeTexto, 0);
     }, 2000);
 }
-/*VER INVENTARIO */
+const cambiarMensaje = (dialogo, texto, i) =>{
+    dialogo.style.visibility = "visible";
+    dialogo.style.display = "block";
+    texto.innerText = mensaje(nombreDelJugador)[i];
+    dialogo.classList.add('scale-up-center');
+    audioNotificacion.play();
+};
+/****************************************************************** */
+/********************VER INVENTARIO **************************** */
+/****************************************************************** */
 function verInventario(){ //solo muestra
     dialogo.style.visibility = "hidden";
     dialogo.style.display = "none";
     popup.innerHTML = `
-        <section class="cabeceraInventario border-bottom d-flex justify-content-center align-items-center">
+        <section class="cabeceraPopup border-bottom d-flex justify-content-center align-items-center">
             <h2>Inventario</h2>
             <button type="button" onclick="cerrarInventario()">✕</button>
         </section>
@@ -87,21 +92,21 @@ function cerrarInventario(){
         cambiarMensaje(dialogo,mensajeTexto, 3);
     }
 };
-/*Comprar insumos */
+/****************************************************************** */
+/********************MODO DISTRIBUIDOR **************************** */
+/****************************************************************** */
 const verProductosDistribuidor = () =>{
-    cuadroDialogo.style.visibility = "hidden";
-    cuadroDialogo.style.display = "none";
+        cuadroDialogo.style.visibility = "hidden";
+        cuadroDialogo.style.display = "none";
+        document.querySelector('.botonVerCatalogo').style.display = 'none';
         segundaSeccion.classList.remove('desactive');
          segundaSeccion.innerHTML = `
-        <section class="cabeceraInventario border-bottom d-flex justify-content-center align-items-center">
+        <section class="cabeceraPopup border-bottom d-flex justify-content-center align-items-center">
             <h2>Catálogo</h2>
             <button type="button" onclick="cerrarCatalogo()">✕</button>
         </section>
         <section class="grid-distribuidor"></section>
     `;
-    segundaSeccion.style.padding = "0";
-    segundaSeccion.style.minHeight = "50%";
-    segundaSeccion.style.borderRadius = ".4rem";
     
      if(catalogoDistribuidorAlmacenado.length>0){
     const grid = segundaSeccion.querySelector('.grid-distribuidor');
@@ -112,7 +117,7 @@ const verProductosDistribuidor = () =>{
                 <img class="producto" src="./img/${i.producto}.png" alt="">
                     <section class="nombre-descripcion-producto">
                         <p>${i.producto}-${i.cantidad}</p>
-                        <a id="boton-agregar-carrito" onclick="agregarAlCarrito()"><img src="../img/moneda.png"> $ ${i.precio}</a>
+                        <a id="boton-agregar-carrito" onclick="agregarAlCarrito('${i.producto}',${i.precio})"><img src="../img/moneda.png"> $ ${i.precio}</a>
                     </section>
         `;
         grid.append(nuevoProducto);
@@ -135,8 +140,13 @@ function ajustarInterfazDistribuidor(pantalla) {
         if(!segundaSeccion.classList.contains('desactive')){
             cuadroDialogo.style.visibility = "hidden";
             cuadroDialogo.style.display = "none";
+            document.querySelector('.botonVerCatalogo').style.display = 'none';
         }else{
             segundaSeccion.classList.add('desactive');
+            segundaSeccion.innerHTML = '';
+            document.querySelector('.botonVerCatalogo').style.display = 'flex';
+            cuadroDialogo.style.visibility = 'visible';
+            cuadroDialogo.style.display = 'block';
         }
 
     }

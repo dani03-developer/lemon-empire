@@ -155,6 +155,7 @@ body{
     }
      #segundaSeccion{
         width: 50%;
+        transform: translate(-50%, -70%);
     }
 }
 
@@ -221,6 +222,14 @@ body{
         width: 35%;
         position: static;
     }
+    .nombre-descripcion-producto{
+    a{
+        font-size: .7rem;
+        img{
+            width: 1rem;
+        }
+    }
+}
     }
 }
 

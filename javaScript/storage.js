@@ -4,3 +4,5 @@ const guardarInventario = (inventario) => localStorage.setItem('inventario', JSO
 const obtenerInventario = () => JSON.parse(localStorage.getItem('inventario')) || [];
 const guardarCatalogoDistribuidor = (catalogoDistribuidorActualizado) => localStorage.setItem('catalogoDistribuidor', JSON.stringify(catalogoDistribuidorActualizado));
 const obtenerCatalogoDistribuidor = () => JSON.parse(localStorage.getItem('catalogoDistribuidor')) || [];
+const enviarItemAlCarrio = (carritoCompra) => sessionStorage.setItem('productosCarrito', JSON.stringify(carritoCompra));
+const obtenerItemCarrito = () => JSON.parse(sessionStorage.getItem('productosCarrito')) || [];

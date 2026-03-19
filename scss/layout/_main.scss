@@ -142,7 +142,7 @@ main{
     z-index: 4;
     visibility: visible;
 }
-#popup.desactive, #segundaSeccion.desactive{
+#popup.desactive, #segundaSeccion.desactive {
     visibility: hidden;
 } 
 .personaje-popup{
@@ -255,7 +255,7 @@ main{
 #inventario, #venderBebidas, #comprarInsumos{
     cursor: pointer;
 }
-.cabeceraInventario{
+.cabeceraPopup{
     position: relative;
     h2{
         margin-top: .5rem;
@@ -303,7 +303,7 @@ main{
     }
 }
 /*Distribuidor*/
-.modo-distribuidor {
+.modo-distribuidor { 
     .contenido-principal{
         justify-content: end;
     }
@@ -330,7 +330,23 @@ main{
         flex: 1;
         margin-top: 1rem;
         gap: 2rem;
-     }
+    }
+    #carrito{
+        height: 2.6rem;
+    }
+    #cantidad-carrito{
+        @extend %flexCenter;
+        right: 0;
+        bottom: 0;
+        background-color: variables.$color-marron-carrito;
+        color: variables.$color-base;
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 1rem;
+        p{
+            margin-bottom: 0;
+        }
+    }
     .seccionDialogo{
         display: flex;
         flex: 1;
@@ -346,6 +362,12 @@ main{
         flex-direction: column;
         justify-content: end;
         align-items: center;
+    }
+    #segundaSeccion{
+        transform: translate(-50%, -45%);
+       padding : 0;
+       min-height: fit-content;
+       border-radius: .4rem;
     }
     .botonVerCatalogo{
         display: flex;
@@ -363,8 +385,7 @@ main{
         border-radius: 2rem;
         text-align: center;
     }
-}
-.grid-distribuidor{
+    .grid-distribuidor{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: auto;
@@ -395,6 +416,7 @@ main{
         margin-bottom: .3rem
     }
     a{
+        cursor: pointer;
         font-size: 0.6rem;
         font-weight: bold;
         img{
@@ -413,4 +435,5 @@ main{
     border: .10rem solid variables.$color-marron-oscuro;
     border-radius: .1rem;
     
+}
 }
