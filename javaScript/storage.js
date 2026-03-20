@@ -1,5 +1,7 @@
 const guardarNombre = (nombre) => localStorage.setItem('nombre', nombre);
 const obtenerNombre = () => localStorage.getItem('nombre') || "";
+const guardarCapital = (capital) => localStorage.setItem('capitalActual', capital);
+const obtenerCapital = () => localStorage.getItem('capitalActual') || "";
 const guardarInventario = (inventario) => localStorage.setItem('inventario', JSON.stringify(inventario));
 const obtenerInventario = () => JSON.parse(localStorage.getItem('inventario')) || [];
 const guardarCatalogoDistribuidor = (catalogoDistribuidorActualizado) => localStorage.setItem('catalogoDistribuidor', JSON.stringify(catalogoDistribuidorActualizado));

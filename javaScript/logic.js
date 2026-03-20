@@ -65,10 +65,42 @@ let actualizarDia =()=>{
     dias.innerHTML =` <img class="imagen-sol" src="../img/sol.png" alt=""> Día ${diaActual}`;
 }
 /*Actualizar capital */
-let actualizarCapital = () => {
-        dinero.forEach(element => {
-        element.innerText = `$ ${capitalActual.toLocaleString('es-AR')}`;
-    });
+let finalizarCompra = (carrito,total,capital) => {
+         let capitalActual = capital-total;
+        if (capitalActual<0) {
+            Toastify({
+            text: "❌ Eror, dinero insuficiente",
+            duration: 5000,
+            gravity :"top",
+            position: "center",
+            style: {
+                background: "linear-gradient(to right, #b01500, #c9813d)",
+            }
+            }).showToast();
+        }else{
+            Toastify({
+            text: "✅ Compra Exitosa!",
+            duration: 5000,
+            gravity :"top",
+            position: "center",
+            style: {
+                background: "linear-gradient(to right, #00b046, #c2c93d)",
+            }
+            }).showToast();
+            guardarCapital(capitalActual);
+            let capital = obtenerCapital();
+             dinero.forEach(element => {
+             element.innerText = `$ ${capital.toLocaleString('es-AR')}`;
+            });
+            carrito.forEach(i =>{
+            agregarInventario(i.producto, i.cantidad);
+            });
+            carritoCompra = [];
+            sessionStorage.removeItem('productosCarrito');
+            document.querySelector('.grid-carrito').classList.add('desactive');
+            document.getElementById('cantidad-carrito').innerText = "0";
+            document.getElementById('resultado-suma').innerText = "$ 0";;
+        }    
 };
 // Agregar productos al inventario
 let agregarInventario = (producto, cantidad) =>{ //agrega
@@ -82,16 +114,45 @@ let agregarInventario = (producto, cantidad) =>{ //agrega
     guardarInventario(inventario);
 };
 //Función para comprar insumos al distribuidor
-const agregarAlCarrito = (producto, precio) =>{
+const agregarAlCarrito = (producto, tipoCantidad, precio) =>{
     carritoCompra = obtenerItemCarrito();
+    let precioNumerico = Number(precio);
     let productoEncontrado = carritoCompra.find(x => x.producto === producto);
-    let totalProducto = cantidadItem*precio;
     if(productoEncontrado){
          productoEncontrado.cantidad+=cantidadItem;
-         productoEncontrado.total +=totalProducto;
+         productoEncontrado.total = productoEncontrado.cantidad * productoEncontrado.precioUnitario;
     }else{
-       carritoCompra.push({producto: producto, cantidad: cantidadItem, total: totalProducto});
+       carritoCompra.push({producto: producto, tipoCantidad: tipoCantidad, cantidad: cantidadItem, precioUnitario: precioNumerico ,total: precioNumerico});
     }
     enviarItemAlCarrio(carritoCompra);
-    document.getElementById('cantidad-carrito').innerText = `${carritoCompra.length}`; 
+    const cantidadTotal = calcularCantidadesCarrito(carritoCompra);
+    document.getElementById('cantidad-carrito').innerText = `${cantidadTotal}`; 
 }
+const calcularCantidadesCarrito = (carrito) =>{
+    let cantidades = carrito.reduce((acc,cur)=>acc + cur.cantidad, 0);
+    return cantidades;
+}
+const calcularTotalCarrito = (carrito) =>{
+    let subtotal = carrito.reduce((acc,cur)=>acc + cur.total, 0); //reduce ayuda a sumar todo y reducirlo en un solo valor en este caso sumamos todos los total de cada producto
+    return subtotal;
+}
+ function comprar(){
+    carritoActual = obtenerItemCarrito();
+    const totalCompra = calcularTotalCarrito(carritoActual);
+    let capital = obtenerCapital();
+    if(carritoActual.length>0){
+        finalizarCompra(carritoActual,totalCompra,capital);
+    }else{
+        Toastify({
+
+            text: "❌ Eror, carrito vacío",
+            duration: 3000,
+            gravity :"top",
+            position: "center",
+            style: {
+                background: "linear-gradient(to right, #b01500, #c9813d)",
+            }
+        }).showToast();
+    }
+    
+ }

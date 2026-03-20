@@ -13,18 +13,10 @@ const cesped = document.querySelector('.cesped');
 const arbol = document.getElementById('arbolDos');
 const cielo = document.querySelector('.cielo');
 const imagenMenu = document.querySelector('.imagen-menu');
-const inventarioAlmacenado = obtenerInventario();
 const textoTienda = document.getElementById('mensaje-distribuidor');
 const cuadroDialogo = document.getElementById('dialogo-distribuidor');
 const segundaSeccion = document.getElementById('segundaSeccion');
-const catalogoDistribuidorAlmacenado = obtenerCatalogoDistribuidor();
-/****************************************************************** */
-/***************PREPARATIVOS PARA EL INCIO ************************ */
-/****************************************************************** */
-navegarA('main-screen');
-actualizarCapital();
-actualizarDia();
-cargarProductosDistribuidor(diaActual);
+const carrito = document.getElementById('carrito');
 function navegarA(screenId) {
     const screens = document.querySelectorAll('.screens');
     screens.forEach(s => s.classList.add('hidden'));
@@ -55,6 +47,7 @@ const cambiarMensaje = (dialogo, texto, i) =>{
 /********************VER INVENTARIO **************************** */
 /****************************************************************** */
 function verInventario(){ //solo muestra
+    const inventarioAlmacenado = obtenerInventario();
     dialogo.style.visibility = "hidden";
     dialogo.style.display = "none";
     popup.innerHTML = `
@@ -86,6 +79,7 @@ function verInventario(){ //solo muestra
 };
 function cerrarInventario(){
     popup.classList.add('desactive');
+    const inventarioAlmacenado = obtenerInventario();
     if(inventarioAlmacenado.length === 0){
         cambiarMensaje(dialogo,mensajeTexto, 1);
     }else{
@@ -95,7 +89,19 @@ function cerrarInventario(){
 /****************************************************************** */
 /********************MODO DISTRIBUIDOR **************************** */
 /****************************************************************** */
+function tiendaDistribuidor(){
+   navegarA('tienda-distribuidor');
+   document.body.classList.add('modo-distribuidor');
+   cesped.src = './img/cespedDos.png';
+   arbol.src = './img/arbolUno.png';
+   esDesktop.addEventListener('change',ajustarInterfazDistribuidor);
+   ajustarInterfazDistribuidor(esDesktop);
+   setTimeout(() =>{
+        cambiarMensaje(cuadroDialogo,textoTienda, 2);
+    },500); 
+}
 const verProductosDistribuidor = () =>{
+    const catalogoDistribuidorAlmacenado = obtenerCatalogoDistribuidor();
         cuadroDialogo.style.visibility = "hidden";
         cuadroDialogo.style.display = "none";
         document.querySelector('.botonVerCatalogo').style.display = 'none';
@@ -108,16 +114,16 @@ const verProductosDistribuidor = () =>{
         <section class="grid-distribuidor"></section>
     `;
     
-     if(catalogoDistribuidorAlmacenado.length>0){
+    if(catalogoDistribuidorAlmacenado.length>0){
     const grid = segundaSeccion.querySelector('.grid-distribuidor');
     catalogoDistribuidorAlmacenado.forEach(i => {
         let nuevoProducto = document.createElement('section'); //creamos un nuevo section para los productos
         nuevoProducto.classList.add('container-producto-distribuidor');
         nuevoProducto.innerHTML = `
-                <img class="producto" src="./img/${i.producto}.png" alt="">
+                <img src="./img/${i.producto}.png" alt="">
                     <section class="nombre-descripcion-producto">
                         <p>${i.producto}-${i.cantidad}</p>
-                        <a id="boton-agregar-carrito" onclick="agregarAlCarrito('${i.producto}',${i.precio})"><img src="../img/moneda.png"> $ ${i.precio}</a>
+                        <a id="boton-agregar-carrito" onclick="agregarAlCarrito('${i.producto}','${i.cantidad}', ${i.precio})"><img src="../img/moneda.png"> $ ${i.precio}</a>
                     </section>
         `;
         grid.append(nuevoProducto);
@@ -151,14 +157,74 @@ function ajustarInterfazDistribuidor(pantalla) {
 
     }
 }
-function tiendaDistribuidor(){
-   navegarA('tienda-distribuidor');
-   document.body.classList.add('modo-distribuidor');
-   cesped.src = './img/cespedDos.png';
-   arbol.src = './img/arbolUno.png';
-   esDesktop.addEventListener('change',ajustarInterfazDistribuidor);
-   ajustarInterfazDistribuidor(esDesktop);
-   setTimeout(() =>{
-        cambiarMensaje(cuadroDialogo,textoTienda, 2);
-    },500); 
+/****************************************************************** */
+/********************MODO DISTRIBUIDOR **************************** */
+/****************************************************************** */
+
+const abrirCarrito = ()=>{
+    const carritoActual = obtenerItemCarrito();
+    const totalCompra = calcularTotalCarrito(carritoActual);
+     segundaSeccion.classList.add('carrito');
+        segundaSeccion.innerHTML = `
+        <section class="cabeceraPopup border-bottom d-flex justify-content-center align-items-center">
+            <h2>Carrito</h2>
+            <button type="button" onclick="cerrarCarrito()">✕</button>
+        </section>
+        <section class="grid-carrito"></section>
+           <section class="container-total">
+                    <section class="total">
+                        <p>TOTAL</p>
+                        <p id=resultado-suma>$ ${totalCompra.toLocaleString('es-AR')}</p>
+                    </section>       
+                    <a id="boton-comprar" onclick="comprar()">Comprar</a>
+            </section>
+       
+    `;
+
+    if(carritoActual.length>0){
+    const grid = segundaSeccion.querySelector('.grid-carrito');
+    carritoActual.forEach(i => {
+        let nuevoProducto = document.createElement('section'); //creamos un nuevo section para los productos
+        nuevoProducto.classList.add('container-producto-carrito');
+        nuevoProducto.innerHTML = `
+                <img src="./img/${i.producto}.png" alt="">
+                    <section class="producto-cantidad">
+                        <p>${i.producto} - ${i.tipoCantidad}</p>
+                            <section onclick = "actualizarCantidad('${i.producto}', 'menos')" class="btn-mas-menos"><p>-</p></section>
+                            <p>${i.cantidad}</p>
+                            <section onclick = "actualizarCantidad('${i.producto}', 'mas')" class="btn-mas-menos"><p>+</p></section>
+                    </section>
+        `;
+        grid.append(nuevoProducto);
+        });
+    }
+}
+carrito.addEventListener('click',abrirCarrito)
+function actualizarCantidad(nombreProducto,accion){
+    let carritoActual = obtenerItemCarrito();
+    const item = carritoActual.find(i => i.producto === nombreProducto);
+    if (item) {
+        if (accion === "mas") {
+            item.cantidad++;
+            const cantidadTotal = calcularCantidadesCarrito(carritoActual);
+            document.getElementById('cantidad-carrito').innerText = `${cantidadTotal}`; 
+        } else if (accion === "menos") {
+            item.cantidad--;
+            const cantidadTotal = calcularCantidadesCarrito(carritoActual);
+            document.getElementById('cantidad-carrito').innerText = `${cantidadTotal}`; 
+        }
+        if (item.cantidad <= 0) {
+            carritoActual = carritoActual.filter(i => i.producto !== nombreProducto);
+        } else {
+            item.total = item.cantidad * Number(item.precioUnitario);
+        }
+        
+    }
+    enviarItemAlCarrio(carritoActual);
+    abrirCarrito(); //actualizo
+    console.log(sumaDeTotales(carritoActual));
+}
+const cerrarCarrito=()=>{
+    segundaSeccion.classList.remove('carrito');
+    verProductosDistribuidor();
 }

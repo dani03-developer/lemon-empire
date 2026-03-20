@@ -2,7 +2,7 @@
 @use './utilities/mixins';
 @use './layout/header';
 @use './layout/secciones';*/
-#menu, #menu-home, .botones, .contenedor-principal-dias, .container-producto, .contador, .modo-distribuidor #cantidad-carrito {
+#menu, #menu-home, .botones, .contenedor-principal-dias, .container-producto, .contador, .modo-distribuidor #cantidad-carrito, .modo-distribuidor .container-producto-carrito .producto-cantidad .btn-mas-menos {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -165,8 +165,9 @@ main {
   visibility: visible;
 }
 
-#popup.desactive, #segundaSeccion.desactive {
+#popup.desactive, #segundaSeccion.desactive, .grid-carrito.desactive {
   visibility: hidden;
+  display: none;
 }
 
 .personaje-popup {
@@ -399,7 +400,13 @@ main {
 .modo-distribuidor #segundaSeccion {
   transform: translate(-50%, -45%);
   padding: 0;
-  min-height: fit-content;
+  max-height: 80vh;
+  border-radius: 0.4rem;
+}
+.modo-distribuidor #segundaSeccion.carrito {
+  transform: translate(-50%, -45%);
+  padding: 0;
+  min-height: 50%;
   border-radius: 0.4rem;
 }
 .modo-distribuidor .botonVerCatalogo {
@@ -469,6 +476,66 @@ main {
   background-color: #E79F5B;
   border: 0.1rem solid #8B4C27;
   border-radius: 0.1rem;
+}
+.modo-distribuidor .grid-carrito {
+  flex: 1;
+  overflow-y: auto;
+  margin: 1rem;
+  gap: 0.6rem;
+  display: flex;
+  flex-direction: column;
+}
+.modo-distribuidor .container-producto-carrito {
+  display: flex;
+  justify-content: space-evenly;
+  border: 0.15rem solid #3d3a3a;
+  border-radius: 0.4rem;
+  padding: 0.5rem 0rem;
+}
+.modo-distribuidor .container-producto-carrito img {
+  width: 2rem;
+  height: auto;
+  margin-left: 0;
+}
+.modo-distribuidor .container-producto-carrito .producto-cantidad {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.modo-distribuidor .container-producto-carrito .producto-cantidad p {
+  margin-bottom: 0;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.modo-distribuidor .container-producto-carrito .producto-cantidad .btn-mas-menos {
+  height: 1.6rem;
+  width: 1.6rem;
+  border: 0.1rem solid #3d3a3a;
+  border-radius: 0.4rem;
+}
+.modo-distribuidor .container-total {
+  display: flex;
+  position: static;
+  background-color: #FAF4E6;
+  align-items: center;
+  flex-direction: column;
+  border-top: 0.1rem solid #3d3a3a;
+  margin: 0 10%;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+.modo-distribuidor .total {
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+}
+.modo-distribuidor #boton-comprar {
+  text-align: center;
+  height: 2rem;
+  width: 8rem;
+  border: 0.1rem solid #8B4C27;
+  border-radius: 0.4rem;
+  background-color: #E79F5B;
 }
 
 * {
