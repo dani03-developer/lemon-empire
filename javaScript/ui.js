@@ -102,9 +102,11 @@ function tiendaDistribuidor(){
 }
 const verProductosDistribuidor = () =>{
     const catalogoDistribuidorAlmacenado = obtenerCatalogoDistribuidor();
-        cuadroDialogo.style.visibility = "hidden";
-        cuadroDialogo.style.display = "none";
-        document.querySelector('.botonVerCatalogo').style.display = 'none';
+        if (!esDesktop.matches) {
+            cuadroDialogo.style.visibility = "hidden";
+            cuadroDialogo.style.display = "none";
+            document.querySelector('.botonVerCatalogo').style.display = 'none';
+        }
         segundaSeccion.classList.remove('desactive');
          segundaSeccion.innerHTML = `
         <section class="cabeceraPopup border-bottom d-flex justify-content-center align-items-center">
@@ -140,31 +142,34 @@ const esDesktop = window.matchMedia('(min-width: 992px)');
 function ajustarInterfazDistribuidor(pantalla) {
     if(pantalla.matches){
         verProductosDistribuidor();
-        cuadroDialogo.style.visibility = "visible";
-        cuadroDialogo.style.display = "block";
+        if (textoTienda.innerText !== "") {
+            cuadroDialogo.style.visibility = "visible";
+            cuadroDialogo.style.display = "block";
+        }
     }else{
         if(!segundaSeccion.classList.contains('desactive')){
             cuadroDialogo.style.visibility = "hidden";
             cuadroDialogo.style.display = "none";
             document.querySelector('.botonVerCatalogo').style.display = 'none';
         }else{
-            segundaSeccion.classList.add('desactive');
-            segundaSeccion.innerHTML = '';
-            document.querySelector('.botonVerCatalogo').style.display = 'flex';
-            cuadroDialogo.style.visibility = 'visible';
-            cuadroDialogo.style.display = 'block';
+           document.querySelector('.botonVerCatalogo').style.display = 'flex';
+            if (textoTienda.innerText !== "") {
+                cuadroDialogo.style.visibility = 'visible';
+                cuadroDialogo.style.display = 'block';
+            }
         }
 
     }
 }
 /****************************************************************** */
-/********************MODO DISTRIBUIDOR **************************** */
+/********************CARRITO **************************** */
 /****************************************************************** */
 
 const abrirCarrito = ()=>{
     const carritoActual = obtenerItemCarrito();
     const totalCompra = calcularTotalCarrito(carritoActual);
-     segundaSeccion.classList.add('carrito');
+     segundaSeccion.classList.remove('desactive'); 
+    segundaSeccion.classList.add('carrito');
         segundaSeccion.innerHTML = `
         <section class="cabeceraPopup border-bottom d-flex justify-content-center align-items-center">
             <h2>Carrito</h2>

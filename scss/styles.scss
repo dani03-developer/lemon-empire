@@ -100,7 +100,7 @@ body{
         }
         
     }
-    #segundaSeccion{
+    #segundaSeccion, #segundaSeccion.carrito{
         width: 65%;
     }
     .grid-distribuidor{
@@ -153,7 +153,7 @@ body{
         }
         
     }
-     #segundaSeccion{
+     #segundaSeccion, #segundaSeccion.carrito{
         width: 50%;
         transform: translate(-50%, -70%);
     }
@@ -217,7 +217,7 @@ body{
      #tienda-jugos{
         width: 60%;
      }
-     #segundaSeccion{
+     #segundaSeccion, #segundaSeccion.carrito{
         transform: translate(-25%, 0%);
         width: 35%;
         position: static;

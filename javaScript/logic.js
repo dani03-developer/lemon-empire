@@ -65,6 +65,43 @@ let actualizarDia =()=>{
     dias.innerHTML =` <img class="imagen-sol" src="../img/sol.png" alt=""> Día ${diaActual}`;
 }
 /*Actualizar capital */
+
+// Agregar productos al inventario
+let agregarInventario = (producto, cantidad) =>{ //agrega
+    inventario = obtenerInventario();
+     let productoInventarioEncontrado = inventario.find(x => x.producto === producto);
+     if(productoInventarioEncontrado){
+        productoInventarioEncontrado.cantidad += cantidad;
+     }else{
+        inventario.push({producto: producto, cantidad: cantidad});
+     }
+    guardarInventario(inventario);
+};
+/****************************************************************** */
+/********************MODO DISTRIBUIDOR **************************** */
+/****************************************************************** */
+const agregarAlCarrito = (producto, tipoCantidad, precio) =>{
+    carritoCompra = obtenerItemCarrito();
+    let precioNumerico = Number(precio);
+    let productoEncontrado = carritoCompra.find(x => x.producto === producto);
+    if(productoEncontrado){
+         productoEncontrado.cantidad+=cantidadItem;
+         productoEncontrado.total = productoEncontrado.cantidad * productoEncontrado.precioUnitario;
+    }else{
+       carritoCompra.push({producto: producto, tipoCantidad: tipoCantidad, cantidad: cantidadItem, precioUnitario: precioNumerico ,total: precioNumerico});
+    }
+    enviarItemAlCarrio(carritoCompra);
+    const cantidadTotal = calcularCantidadesCarrito(carritoCompra);
+    document.getElementById('cantidad-carrito').innerText = `${cantidadTotal}`; 
+}
+const calcularCantidadesCarrito = (carrito) =>{
+    let cantidades = carrito.reduce((acc,cur)=>acc + cur.cantidad, 0);
+    return cantidades;
+}
+const calcularTotalCarrito = (carrito) =>{
+    let subtotal = carrito.reduce((acc,cur)=>acc + cur.total, 0); //reduce ayuda a sumar todo y reducirlo en un solo valor en este caso sumamos todos los total de cada producto
+    return subtotal;
+}
 let finalizarCompra = (carrito,total,capital) => {
          let capitalActual = capital-total;
         if (capitalActual<0) {
@@ -102,40 +139,6 @@ let finalizarCompra = (carrito,total,capital) => {
             document.getElementById('resultado-suma').innerText = "$ 0";;
         }    
 };
-// Agregar productos al inventario
-let agregarInventario = (producto, cantidad) =>{ //agrega
-    inventario = obtenerInventario();
-     let productoInventarioEncontrado = inventario.find(x => x.producto === producto);
-     if(productoInventarioEncontrado){
-        productoInventarioEncontrado.cantidad += cantidad;
-     }else{
-        inventario.push({producto: producto, cantidad: cantidad});
-     }
-    guardarInventario(inventario);
-};
-//Función para comprar insumos al distribuidor
-const agregarAlCarrito = (producto, tipoCantidad, precio) =>{
-    carritoCompra = obtenerItemCarrito();
-    let precioNumerico = Number(precio);
-    let productoEncontrado = carritoCompra.find(x => x.producto === producto);
-    if(productoEncontrado){
-         productoEncontrado.cantidad+=cantidadItem;
-         productoEncontrado.total = productoEncontrado.cantidad * productoEncontrado.precioUnitario;
-    }else{
-       carritoCompra.push({producto: producto, tipoCantidad: tipoCantidad, cantidad: cantidadItem, precioUnitario: precioNumerico ,total: precioNumerico});
-    }
-    enviarItemAlCarrio(carritoCompra);
-    const cantidadTotal = calcularCantidadesCarrito(carritoCompra);
-    document.getElementById('cantidad-carrito').innerText = `${cantidadTotal}`; 
-}
-const calcularCantidadesCarrito = (carrito) =>{
-    let cantidades = carrito.reduce((acc,cur)=>acc + cur.cantidad, 0);
-    return cantidades;
-}
-const calcularTotalCarrito = (carrito) =>{
-    let subtotal = carrito.reduce((acc,cur)=>acc + cur.total, 0); //reduce ayuda a sumar todo y reducirlo en un solo valor en este caso sumamos todos los total de cada producto
-    return subtotal;
-}
  function comprar(){
     carritoActual = obtenerItemCarrito();
     const totalCompra = calcularTotalCarrito(carritoActual);

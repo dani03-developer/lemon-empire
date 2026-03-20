@@ -620,7 +620,7 @@ body {
   .modo-distribuidor #tienda-jugos {
     width: 70%;
   }
-  #segundaSeccion {
+  #segundaSeccion, #segundaSeccion.carrito {
     width: 65%;
   }
   .grid-distribuidor {
@@ -663,7 +663,7 @@ body {
     bottom: 10rem;
     height: 30rem;
   }
-  #segundaSeccion {
+  #segundaSeccion, #segundaSeccion.carrito {
     width: 50%;
     transform: translate(-50%, -70%);
   }
@@ -722,7 +722,7 @@ body {
   .modo-distribuidor #tienda-jugos {
     width: 60%;
   }
-  .modo-distribuidor #segundaSeccion {
+  .modo-distribuidor #segundaSeccion, .modo-distribuidor #segundaSeccion.carrito {
     transform: translate(-25%, 0%);
     width: 35%;
     position: static;
