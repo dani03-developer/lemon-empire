@@ -83,7 +83,7 @@
                         <ol>
                             <li onclick="verInventario()" id="inventario">Ver Inventario</li>
                             <li onclick="tiendaDistribuidor()"  id="insumos">Comprar Insumos</li>
-                            <li id="venderBebidas">Vender Bebidas</li>
+                            <li onclick= "venderBebidas()" id="venderBebidas">Vender Bebidas</li>
                             <li><a href="./index.html">Volver al inicio</a></li>
                         </ol>
                     </section>
@@ -151,6 +151,51 @@
                   </section>
             </section>
             <section class="d-none d-lg-block p-5 border-top"></section>
+
+
+        </section>
+         <!--CAMBIO DE PANTALLA VENTA DE BEBIDAS-->
+        <section id="vender-bebidas" class="contenedor screens">
+           <section class="cabecera">
+                <section class="circulo"></section>
+                <section class="circulo"></section>
+            </section>
+            
+            <section class="container-audio-moneda d-flex justify-content-between align-items-center">
+                <section>
+                    <img class="audio" src="./img/audio-muted.png" alt="">
+                </section>
+                <section class="container-moneda d-flex flex-row gap-2 ">
+                    <img id="moneda" src="./img/moneda.png" alt="">
+                    <p id="dinero-noche" class="dinero"></p>
+                </section>
+            </section>
+            <section class="luna hidden">
+                    <img src="./img/luna.png" alt="">
+                </section>
+            <section class="contenedor-principal-ventas d-flex flex-grow-1 flex-column justify-content-center align-items-center position-relative">
+                <section class="seccionDialogo d-flex flex-grow-1 justify-content-center align-items-center">
+                    <section id="dialogo-despedida" class="hidden">
+                        <img class="personaje" src="./img/gato.png" alt="">
+                        <p id="mensaje-despedida"></p>
+                        <audio id="audio-notificacion">
+                            <source src="./audio/notificacion.mp3">
+                        </audio>
+                    </section>
+                    <section id="dialogo-clientes">
+                        <img class="personaje" src="" alt="">
+                        <p id="mesaje-cliente"></p>
+                        <audio id="audio-notificacion">
+                            <source src="./audio/notificacion.mp3">
+                        </audio>
+                    </section>
+            </section>
+                <section class=" d-flex flex-grow-1 justify-content-center align-items-end">
+                    <img id="tienda-jugos-venta" src="./img/juice-shop.png" alt="">
+                </section>
+            </section>
+             <section class="d-none d-lg-block p-5 border-top"></section>
+           </section>
 
 
         </section>

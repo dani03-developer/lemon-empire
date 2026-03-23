@@ -106,7 +106,18 @@ body{
     .grid-distribuidor{
     margin: 2rem;
     }
+    #tienda-jugos-venta{
+        width: 70%;
+    }
+    #tienda-jugos-venta.closed{
+            width: 65%;
+    }
+    .cesped.ventas-bebidas{
+    width: 100%;
+    height: 20%;
+    }
 } 
+
 
 
 // Medium devices (tablets, 768px and up)
@@ -157,6 +168,17 @@ body{
         width: 50%;
         transform: translate(-50%, -70%);
     }
+    #dialogo-despedida{
+            width: 65%;
+    }
+     #tienda-jugos-venta, #tienda-jugos-venta.closed{
+        width: 60%;
+    }
+    .cesped.ventas-bebidas{
+    width: 100%;
+    height: auto;
+    }
+    
 }
 
 // Large devices (desktops, 992px and up)
@@ -170,6 +192,9 @@ body{
     }
     .contenido-principal {
         flex-direction: row; // menu e imagen quedan lado a lado
+    }
+    #dialogo{
+        margin-bottom: 2rem;
     }
     .imagen-menu{
         justify-content: start;
@@ -221,6 +246,7 @@ body{
         transform: translate(-25%, 0%);
         width: 35%;
         position: static;
+        max-height: 55vh;
     }
     .nombre-descripcion-producto{
     a{
@@ -231,10 +257,43 @@ body{
     }
 }
     }
+    #segundaSeccion.carrito{
+         .grid-carrito{
+        margin: 1rem 10%;
+        }
+    }
+    .contenedor-principal-ventas{
+        margin-bottom: -2rem;
+    }
+    #tienda-jugos-venta{
+        width: 50%;
+        margin-bottom: 0rem;
+    }
+    #tienda-jugos-venta.closed{
+        width: 50%;
+        margin-bottom: 0rem;
+    }
 }
 
 // X-Large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
+    body.modo-nocturno {
+    .luna{
+        padding-left: 15%;
+        margin-bottom: -2rem;
+        margin-top: -2rem;
+        img{
+            width: 5rem;
+        }
+        
+    }
+    }
+     #dialogo-despedida{
+            width: 50%;
+    }
+     #tienda-jugos-venta{
+        width: 40%;
+    }
 }
 
 // XX-Large devices (larger desktops, 1400px and up)
@@ -245,6 +304,21 @@ body{
  .arbolUno{
     height: 65%;
  }
+ .modo-distribuidor{
+    .grid-distribuidor{
+    margin: 1rem 4rem;
+ }
+ }
+ 
+     #segundaSeccion.carrito{
+         .grid-carrito{
+        margin: 1rem 12%;
+        }
+        .container-total{
+                margin: 0 15%;
+                margin-bottom: 1rem;
+        }
+    }
 }
 
 @media (orientation: landscape) and (max-height: 527px) { //landscape Compara el ancho vs el alto de la pantalla. Si el ancho es mayor que el alto → landscape. Si el alto es mayor que el ancho → portrait

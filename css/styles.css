@@ -59,6 +59,7 @@ main {
   display: flex;
   flex-direction: column;
   flex: 1;
+  margin-bottom: -2rem;
 }
 
 #menu, #menu-home {
@@ -249,10 +250,11 @@ main {
 }
 
 .hidden {
+  visibility: hidden;
   display: none !important;
 }
 
-#dialogo, #dialogo-distribuidor {
+#dialogo, #dialogo-distribuidor, #dialogo-clientes, #dialogo-despedida {
   visibility: hidden;
   display: none;
   height: auto;
@@ -273,7 +275,7 @@ main {
   bottom: 90%;
 }
 
-#dialogo.scale-up-center, #dialogo-distribuidor.scale-up-center {
+#dialogo.scale-up-center, #dialogo-distribuidor.scale-up-center, #dialogo-clientes.scale-up-center, #dialogo-despedida.scale-up-center {
   animation: scale-up-center 0.3s;
 }
 
@@ -538,6 +540,35 @@ main {
   background-color: #E79F5B;
 }
 
+body.modo-nocturno {
+  background-color: #3C5D8B;
+}
+body.modo-nocturno #dinero-noche {
+  color: #FAF4E6;
+}
+body.modo-nocturno .luna {
+  padding-left: 20%;
+}
+body.modo-nocturno .luna img {
+  width: 3.5rem;
+}
+body.modo-nocturno .contenedor-principal-ventas {
+  gap: 2rem;
+}
+
+#tienda-jugos-venta, #tienda-jugos-venta.closed {
+  width: 80%;
+  height: fit-content;
+  margin-bottom: 3rem;
+}
+
+.cesped.ventas-bebidas {
+  bottom: 0;
+  left: 0;
+  height: 20%;
+  width: auto;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -626,6 +657,16 @@ body {
   .grid-distribuidor {
     margin: 2rem;
   }
+  #tienda-jugos-venta {
+    width: 70%;
+  }
+  #tienda-jugos-venta.closed {
+    width: 65%;
+  }
+  .cesped.ventas-bebidas {
+    width: 100%;
+    height: 20%;
+  }
 }
 @media (min-width: 768px) {
   .audio {
@@ -667,6 +708,16 @@ body {
     width: 50%;
     transform: translate(-50%, -70%);
   }
+  #dialogo-despedida {
+    width: 65%;
+  }
+  #tienda-jugos-venta, #tienda-jugos-venta.closed {
+    width: 60%;
+  }
+  .cesped.ventas-bebidas {
+    width: 100%;
+    height: auto;
+  }
 }
 @media (min-width: 992px) {
   .contenedor {
@@ -678,6 +729,9 @@ body {
   }
   .contenido-principal {
     flex-direction: row;
+  }
+  #dialogo {
+    margin-bottom: 2rem;
   }
   .imagen-menu {
     justify-content: start;
@@ -726,12 +780,43 @@ body {
     transform: translate(-25%, 0%);
     width: 35%;
     position: static;
+    max-height: 55vh;
   }
   .modo-distribuidor .nombre-descripcion-producto a {
     font-size: 0.7rem;
   }
   .modo-distribuidor .nombre-descripcion-producto a img {
     width: 1rem;
+  }
+  #segundaSeccion.carrito .grid-carrito {
+    margin: 1rem 10%;
+  }
+  .contenedor-principal-ventas {
+    margin-bottom: -2rem;
+  }
+  #tienda-jugos-venta {
+    width: 50%;
+    margin-bottom: 0rem;
+  }
+  #tienda-jugos-venta.closed {
+    width: 50%;
+    margin-bottom: 0rem;
+  }
+}
+@media (min-width: 1200px) {
+  body.modo-nocturno .luna {
+    padding-left: 15%;
+    margin-bottom: -2rem;
+    margin-top: -2rem;
+  }
+  body.modo-nocturno .luna img {
+    width: 5rem;
+  }
+  #dialogo-despedida {
+    width: 50%;
+  }
+  #tienda-jugos-venta {
+    width: 40%;
   }
 }
 @media (min-width: 1400px) {
@@ -740,6 +825,16 @@ body {
   }
   .arbolUno {
     height: 65%;
+  }
+  .modo-distribuidor .grid-distribuidor {
+    margin: 1rem 4rem;
+  }
+  #segundaSeccion.carrito .grid-carrito {
+    margin: 1rem 12%;
+  }
+  #segundaSeccion.carrito .container-total {
+    margin: 0 15%;
+    margin-bottom: 1rem;
   }
 }
 @media (orientation: landscape) and (max-height: 527px) {

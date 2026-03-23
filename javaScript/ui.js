@@ -17,6 +17,10 @@ const textoTienda = document.getElementById('mensaje-distribuidor');
 const cuadroDialogo = document.getElementById('dialogo-distribuidor');
 const segundaSeccion = document.getElementById('segundaSeccion');
 const carrito = document.getElementById('carrito');
+const dialogoCliente = document.getElementById('dialogo-clientes');
+const textoClientes = document.getElementById('mesaje-cliente');
+const dialogoDespedida = document.getElementById('dialogo-despedida');
+const textoDespedida = document.getElementById('mensaje-despedida');
 function navegarA(screenId) {
     const screens = document.querySelectorAll('.screens');
     screens.forEach(s => s.classList.add('hidden'));
@@ -125,7 +129,7 @@ const verProductosDistribuidor = () =>{
                 <img src="./img/${i.producto}.png" alt="">
                     <section class="nombre-descripcion-producto">
                         <p>${i.producto}-${i.cantidad}</p>
-                        <a id="boton-agregar-carrito" onclick="agregarAlCarrito('${i.producto}','${i.cantidad}', ${i.precio})"><img src="../img/moneda.png"> $ ${i.precio}</a>
+                        <a id="boton-agregar-carrito" onclick="agregarAlCarrito('${i.producto}','${i.cantidad}','${i.cantidadReal}', ${i.precio})"><img src="../img/moneda.png"> $ ${i.precio}</a>
                     </section>
         `;
         grid.append(nuevoProducto);
@@ -211,10 +215,12 @@ function actualizarCantidad(nombreProducto,accion){
     if (item) {
         if (accion === "mas") {
             item.cantidad++;
+            item.cantidadReal += item.unidadReal;
             const cantidadTotal = calcularCantidadesCarrito(carritoActual);
             document.getElementById('cantidad-carrito').innerText = `${cantidadTotal}`; 
         } else if (accion === "menos") {
             item.cantidad--;
+            item.cantidadReal -= item.unidadReal;
             const cantidadTotal = calcularCantidadesCarrito(carritoActual);
             document.getElementById('cantidad-carrito').innerText = `${cantidadTotal}`; 
         }
@@ -232,4 +238,50 @@ function actualizarCantidad(nombreProducto,accion){
 const cerrarCarrito=()=>{
     segundaSeccion.classList.remove('carrito');
     verProductosDistribuidor();
+}
+
+/****************************************************************** */
+/********************VENDER BEBIDAS **************************** */
+/****************************************************************** */
+
+const mensajeClientes = (dialogo, texto, pedido) =>{
+    const imagenDelPersonaje = dialogo.querySelector('.personaje');
+    dialogo.style.visibility = "visible";
+    dialogo.style.display = "block";
+    imagenDelPersonaje.src = pedido.personaje;
+    imagenDelPersonaje.style.left = "4%";
+    texto.innerText = pedido.mensaje;
+    dialogo.classList.add('scale-up-center');
+    audioNotificacion.play();
+};
+function venderBebidas(){
+    navegarA('vender-bebidas');
+    cesped.classList.add('ventas-bebidas');
+    cesped.src = './img/cespedTres.png';
+    let pedidoActual = selecionBebidasYCliente();
+    mensajeClientes(dialogoCliente,textoClientes,pedidoActual);
+    preparandoBebida(pedidoActual.bebida);
+
+    const intervaloPedidos = setInterval(()=>{
+        pedidoActual = selecionBebidasYCliente();
+        const enVentas = !document.getElementById('vender-bebidas').classList.contains('hidden');
+        if(enVentas){
+            mensajeClientes(dialogoCliente,textoClientes,pedidoActual);
+        }
+        preparandoBebida(pedidoActual.bebida);
+    }, 20000);
+    setTimeout(()=>{
+        clearInterval(intervaloPedidos);
+        document.body.classList.add('modo-nocturno');
+        const tienda = document.getElementById('tienda-jugos-venta');
+        const luna = document.querySelector('.luna');
+        dialogoCliente.classList.add('hidden');
+        dialogoDespedida.classList.remove('hidden');
+        cambiarMensaje(dialogoDespedida,textoDespedida, 4);
+        cielo.style.visibility = "hidden";
+        luna.classList.remove('hidden');
+        tienda.src = "./img/juice-shop-closed.png";
+        tienda.classList.add('closed');
+    }, 120000);
+
 }
