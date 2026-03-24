@@ -3,13 +3,11 @@
 
 /*MAIN - INDEX*/
 main{
-    display: flex;
-    flex-direction: column;
+    @extend %flexColumn;
     height: auto;
 }
 .contenedor{
-    display: flex;
-    flex-direction: column;
+    @extend %flexColumn;
     min-height: 97vh;
     margin: .50rem;
     border: .2rem solid variables.$color-negro;
@@ -43,8 +41,7 @@ main{
     padding-left: 2rem;
 }
 .contenido-principal {
-    display: flex;
-    flex-direction: column;
+    @extend %flexColumn;
     flex: 1;
     margin-bottom: -2rem;
 }
@@ -95,7 +92,7 @@ main{
 }
 
 .cielo, .cesped {
-    position: fixed; // Fixed se pega a la ventana, no al contenido
+    position: fixed;
     z-index: 1;
 }
 #arbolDos{
@@ -130,8 +127,7 @@ main{
 }
 /*Home*/
 #popup, #segundaSeccion{
-    display: flex;
-    flex-direction: column;
+    @extend %flexColumn;
     position: fixed;
     top:50%;
     left: 50%;
@@ -144,10 +140,6 @@ main{
     z-index: 4;
     visibility: visible;
 }
-#popup.desactive,#segundaSeccion.desactive, .grid-carrito.desactive{
-    visibility: hidden;
-    display: none;
-} 
 .personaje-popup{
     height: 6rem;
     left: 0;
@@ -162,8 +154,7 @@ main{
 }
 
 .form-nombre{
-    display: flex;
-    flex-direction: column;
+    @extend %flexColumn;
     gap: 1.5rem;
     input{
         background-color: transparent;
@@ -171,12 +162,9 @@ main{
         border-bottom:  .2rem solid variables.$color-negro ;
     }
     button{
-        border: none;
-        background-color: variables.$color-marron-oscuro;
-        color: variables.$color-base;
+        @extend %border;
         width: 60%;
         padding: .7rem .3rem;
-        border-radius: 2rem;
     }
 }
 .container-moneda{
@@ -201,15 +189,12 @@ main{
     }
 }
 #menuReal{
-    display: flex;
-    flex-direction: column;
+    @extend %flexColumn;
     height: auto;
     visibility: visible;
     display: block;
     width: 80%;
-    background-color: variables.$color-base;
-    border: .2rem solid variables.$color-negro;
-    border-radius: .4rem;
+    @extend %bordeVentanas;
     ol{
         /* Arriba | Derecha | Abajo | Izquierda */
         margin: 1rem auto 1rem 1rem;
@@ -230,9 +215,7 @@ main{
     display: none;
     height: auto;
     width: 80%;
-    background-color: variables.$color-base;
-    border: .2rem solid variables.$color-negro;
-    border-radius: .4rem;
+    @extend %bordeVentanas;
     position: relative;
     padding-left: 5rem;
     /* arriba | derecha | abajo | izquierda */
@@ -327,8 +310,7 @@ main{
         height: 20rem;
     }
     .primeraSeccion{
-        display: flex;
-        flex-direction: column;
+        @extend %flexColumn;
         justify-content:  end;
         align-items: center;
         flex: 1;
@@ -352,11 +334,9 @@ main{
         }
     }
     .seccionDialogo{
-        display: flex;
+        @extend %flexCenter;
         flex: 1;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
 
     }
     #dialogoDistribuidor{
@@ -375,9 +355,12 @@ main{
     }
     #segundaSeccion.carrito{
         transform: translate(-50%, -45%);
-       padding : 0;
-       min-height: 50%;
-       border-radius: .4rem;
+        display: flex;        
+        flex-direction: column; 
+        min-height: 50vh;     
+        max-height: 80vh; 
+        padding: 0;
+        border-radius: .4rem;
     }
     .botonVerCatalogo{
         display: flex;
@@ -387,12 +370,9 @@ main{
         height: auto;
     }
     #boton-catalogo{
-        border: none;
-        background-color: variables.$color-marron-oscuro;
-        color: variables.$color-base;
+        @extend %border;
         width: 60%;
         padding: .7rem .3rem;
-        border-radius: 2rem;
         text-align: center;
     }
     .grid-distribuidor{
@@ -415,8 +395,7 @@ main{
         gap: .7rem;
     }
     .nombre-descripcion-producto{
-        display: flex;
-        flex-direction: column;
+        @extend %flexColumn;
         justify-content: start;
         /* arriba | derecha | abajo | izquierda */
         padding: .5rem 0 .5rem 0;
@@ -451,8 +430,7 @@ main{
         overflow-y: auto;  
         margin: 1rem;
         gap: .6rem;
-        display: flex;
-        flex-direction: column;
+        @extend %flexColumn;
     }
     .container-producto-carrito{
         display: flex;
@@ -485,11 +463,10 @@ main{
           
     }
     .container-total{
-        display: flex;
+        @extend %flexColumn;
         position:static;
         background-color: variables.$color-base;
         align-items: center;
-        flex-direction: column;
         border-top:.1rem solid variables.$color-negro;
         margin: 0 10%;
         margin-bottom: 1rem;
@@ -546,11 +523,24 @@ body.modo-nocturno {
     width: auto;
 }
 #boton-pasar-dia{
-        border: none;
-        background-color: variables.$color-marron-oscuro;
-        color: variables.$color-base;
+        @extend %border;
         width: 60%;
         padding: .7rem .3rem;
-        border-radius: 2rem;
         text-align: center;
     }
+ .contenido-instrucciones{
+        align-items: center;
+    }
+.container-instrucciones{
+    width: 90%;
+    height: fit-content;
+    @extend %bordeVentanas;
+
+}
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0'/%3e%3c/svg%3e");
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}

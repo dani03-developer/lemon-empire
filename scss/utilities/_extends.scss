@@ -1,5 +1,21 @@
+@use '../utilities/variables.scss';
 %flexCenter{
    display: flex;
     justify-content: center;
     align-items: center;
+}
+%flexColumn{
+    display: flex;
+    flex-direction: column;
+}
+%border{
+    border: none;
+    background-color: variables.$color-marron-oscuro;
+    color: variables.$color-base;
+    border-radius: 2rem;
+}
+%bordeVentanas{
+    background-color: variables.$color-base;
+    border: .2rem solid variables.$color-negro;
+    border-radius: .4rem;
 }

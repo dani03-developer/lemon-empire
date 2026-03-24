@@ -37,7 +37,7 @@ function cerrarPopup(){
     }else{
         guardarNombre(posibleNombre);
         nombreDelJugador = posibleNombre;
-        popup.classList.add('desactive');
+        popup.classList.add('hidden');
         document.querySelectorAll('.bru').forEach(function(elemento) {
         elemento.classList.remove('bru');
         });

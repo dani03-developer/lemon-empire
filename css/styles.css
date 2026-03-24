@@ -2,22 +2,36 @@
 @use './utilities/mixins';
 @use './layout/header';
 @use './layout/secciones';*/
-#menu, #menu-home, .botones, .contenedor-principal-dias, .container-producto, .contador, .modo-distribuidor #cantidad-carrito, .modo-distribuidor .container-producto-carrito .producto-cantidad .btn-mas-menos {
+#menu, #menu-home, .botones, .contenedor-principal-dias, .container-producto, .contador, .modo-distribuidor #cantidad-carrito, .modo-distribuidor .seccionDialogo, .modo-distribuidor .container-producto-carrito .producto-cantidad .btn-mas-menos {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/*MAIN - INDEX*/
-main {
+main, .contenedor, .contenido-principal, #popup, #segundaSeccion, .form-nombre, #menuReal, .modo-distribuidor .primeraSeccion, .modo-distribuidor .nombre-descripcion-producto, .modo-distribuidor .grid-carrito, .modo-distribuidor .container-total {
   display: flex;
   flex-direction: column;
+}
+
+.form-nombre button, .modo-distribuidor #boton-catalogo, #boton-pasar-dia {
+  border: none;
+  background-color: #8B4C27;
+  color: #FAF4E6;
+  border-radius: 2rem;
+}
+
+#menuReal, #dialogo, #dialogo-distribuidor, #dialogo-clientes, #dialogo-despedida, .container-instrucciones {
+  background-color: #FAF4E6;
+  border: 0.2rem solid #3d3a3a;
+  border-radius: 0.4rem;
+}
+
+/*MAIN - INDEX*/
+main {
   height: auto;
 }
 
 .contenedor {
-  display: flex;
-  flex-direction: column;
   min-height: 97vh;
   margin: 0.5rem;
   border: 0.2rem solid #3d3a3a;
@@ -56,8 +70,6 @@ main {
 }
 
 .contenido-principal {
-  display: flex;
-  flex-direction: column;
   flex: 1;
   margin-bottom: -2rem;
 }
@@ -152,8 +164,6 @@ main {
 
 /*Home*/
 #popup, #segundaSeccion {
-  display: flex;
-  flex-direction: column;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -165,11 +175,6 @@ main {
   border-radius: 1rem;
   z-index: 4;
   visibility: visible;
-}
-
-#popup.desactive, #segundaSeccion.desactive, .grid-carrito.desactive {
-  visibility: hidden;
-  display: none;
 }
 
 .personaje-popup {
@@ -187,8 +192,6 @@ main {
 }
 
 .form-nombre {
-  display: flex;
-  flex-direction: column;
   gap: 1.5rem;
 }
 .form-nombre input {
@@ -197,12 +200,8 @@ main {
   border-bottom: 0.2rem solid #3d3a3a;
 }
 .form-nombre button {
-  border: none;
-  background-color: #8B4C27;
-  color: #FAF4E6;
   width: 60%;
   padding: 0.7rem 0.3rem;
-  border-radius: 2rem;
 }
 
 .container-moneda {
@@ -231,15 +230,10 @@ main {
 }
 
 #menuReal {
-  display: flex;
-  flex-direction: column;
   height: auto;
   visibility: visible;
   display: block;
   width: 80%;
-  background-color: #FAF4E6;
-  border: 0.2rem solid #3d3a3a;
-  border-radius: 0.4rem;
 }
 #menuReal ol {
   /* Arriba | Derecha | Abajo | Izquierda */
@@ -260,9 +254,6 @@ main {
   display: none;
   height: auto;
   width: 80%;
-  background-color: #FAF4E6;
-  border: 0.2rem solid #3d3a3a;
-  border-radius: 0.4rem;
   position: relative;
   padding-left: 5rem;
   /* arriba | derecha | abajo | izquierda */
@@ -362,8 +353,6 @@ main {
   height: 20rem;
 }
 .modo-distribuidor .primeraSeccion {
-  display: flex;
-  flex-direction: column;
   justify-content: end;
   align-items: center;
   flex: 1;
@@ -386,11 +375,8 @@ main {
   margin-bottom: 0;
 }
 .modo-distribuidor .seccionDialogo {
-  display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .modo-distribuidor #dialogoDistribuidor {
   height: fit-content;
@@ -408,8 +394,11 @@ main {
 }
 .modo-distribuidor #segundaSeccion.carrito {
   transform: translate(-50%, -45%);
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh;
+  max-height: 80vh;
   padding: 0;
-  min-height: 50%;
   border-radius: 0.4rem;
 }
 .modo-distribuidor .botonVerCatalogo {
@@ -420,12 +409,8 @@ main {
   height: auto;
 }
 .modo-distribuidor #boton-catalogo {
-  border: none;
-  background-color: #8B4C27;
-  color: #FAF4E6;
   width: 60%;
   padding: 0.7rem 0.3rem;
-  border-radius: 2rem;
   text-align: center;
 }
 .modo-distribuidor .grid-distribuidor {
@@ -450,8 +435,6 @@ main {
   gap: 0.7rem;
 }
 .modo-distribuidor .nombre-descripcion-producto {
-  display: flex;
-  flex-direction: column;
   justify-content: start;
   /* arriba | derecha | abajo | izquierda */
   padding: 0.5rem 0 0.5rem 0;
@@ -485,8 +468,6 @@ main {
   overflow-y: auto;
   margin: 1rem;
   gap: 0.6rem;
-  display: flex;
-  flex-direction: column;
 }
 .modo-distribuidor .container-producto-carrito {
   display: flex;
@@ -517,11 +498,9 @@ main {
   border-radius: 0.4rem;
 }
 .modo-distribuidor .container-total {
-  display: flex;
   position: static;
   background-color: #FAF4E6;
   align-items: center;
-  flex-direction: column;
   border-top: 0.1rem solid #3d3a3a;
   margin: 0 10%;
   margin-bottom: 1rem;
@@ -580,13 +559,26 @@ body.modo-nocturno .contenedor-principal-ventas {
 }
 
 #boton-pasar-dia {
-  border: none;
-  background-color: #8B4C27;
-  color: #FAF4E6;
   width: 60%;
   padding: 0.7rem 0.3rem;
-  border-radius: 2rem;
   text-align: center;
+}
+
+.contenido-instrucciones {
+  align-items: center;
+}
+
+.container-instrucciones {
+  width: 90%;
+  height: fit-content;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0'/%3e%3c/svg%3e");
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
 
 * {
@@ -628,7 +620,7 @@ body {
     width: 80%;
   }
   #arbolDos.vender-bebidas {
-    bottom: 7rem;
+    bottom: 5rem;
   }
 }
 /* Small devices (landscape phones, 576px and up)*/
@@ -693,6 +685,9 @@ body {
     width: 100%;
     height: 20%;
   }
+  .container-instrucciones {
+    width: 70%;
+  }
 }
 @media (min-width: 768px) {
   .audio {
@@ -751,6 +746,10 @@ body {
     bottom: 4rem;
     height: 25rem;
   }
+  .container-instrucciones {
+    width: 60%;
+    margin-bottom: 4rem;
+  }
 }
 @media (min-width: 992px) {
   .contenedor {
@@ -797,6 +796,9 @@ body {
   }
   .form-nombre button {
     width: 30%;
+  }
+  .contenido-instrucciones {
+    margin-bottom: -2rem;
   }
   .grid-inventario {
     grid-auto-rows: 5rem;
@@ -845,6 +847,12 @@ body {
     visibility: hidden;
     display: none;
   }
+  .contenido-instrucciones {
+    align-items: end;
+  }
+  .container-instrucciones {
+    width: 40%;
+  }
 }
 @media (min-width: 1200px) {
   body.modo-nocturno .luna {
@@ -863,6 +871,9 @@ body {
   }
   #boton-pasar-dia {
     width: 25%;
+  }
+  .container-instrucciones {
+    width: 30%;
   }
 }
 @media (min-width: 1400px) {

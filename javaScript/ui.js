@@ -45,7 +45,7 @@ let cambiarDia = ()=>{
             cielo.classList.add('bru');
             cesped.classList.add('bru');
             arbol.classList.add('bru');
-            popup.classList.remove('desactive');
+            popup.classList.remove('hidden');
         }else{
             cambiarMensaje(dialogo,mensajeTexto, 0);
         }
@@ -58,9 +58,21 @@ let cambiarDia = ()=>{
 function start(){
     cambiarDia();
 }
-
+function instrucciones(){
+    navegarA('instrucciones-screen');
+     cesped.classList.add('ventas-bebidas');
+    cesped.src = './img/cespedTres.png';
+    arbol.classList.add('vender-bebidas');
+}
 function salir(){
     window.close();
+}
+function backInicio(){
+    navegarA('main-screen')
+    cesped.classList.remove('ventas-bebidas');
+    arbol.classList.remove('vender-bebidas');
+    cesped.src = './img/cesped.png';  
+    arbol.src = './img/arbolDos.png'; 
 }
 function volverInicio(){
     navegarA('main-screen');
@@ -89,7 +101,7 @@ function verInventario(){ //solo muestra
     popup.style.padding = "0";
     popup.style.minHeight = "50%";
     popup.style.borderRadius = ".4rem";
-    popup.classList.remove('desactive');
+    popup.classList.remove('hidden');
     if(inventarioAlmacenado.length>0){
     const grid = popup.querySelector('.grid-inventario'); //quiere decir que cuando abra el popup y se activen los estilos busque la clase gris-inventario que se creó en popup
     inventarioAlmacenado.forEach(i => {
@@ -107,7 +119,7 @@ function verInventario(){ //solo muestra
     
 };
 function cerrarInventario(){
-    popup.classList.add('desactive');
+    popup.classList.add('hidden');
     const inventarioAlmacenado = obtenerInventario();
     if(inventarioAlmacenado.length === 0){
         cambiarMensaje(dialogo,mensajeTexto, 1);
@@ -136,7 +148,7 @@ const verProductosDistribuidor = () =>{
             cuadroDialogo.style.display = "none";
             document.querySelector('.botonVerCatalogo').style.display = 'none';
         }
-        segundaSeccion.classList.remove('desactive');
+        segundaSeccion.classList.remove('hidden');
          segundaSeccion.innerHTML = `
         <section class="cabeceraPopup border-bottom d-flex justify-content-center align-items-center">
             <h2>Catálogo</h2>
@@ -164,7 +176,7 @@ const verProductosDistribuidor = () =>{
 
 };
 function cerrarCatalogo(){
-        segundaSeccion.classList.add('desactive');
+        segundaSeccion.classList.add('hidden');
         document.body.classList.remove('modo-distribuidor');
         cesped.src = './img/cesped.png';  
         arbol.src = './img/arbolDos.png';  
@@ -179,7 +191,7 @@ function ajustarInterfazDistribuidor(pantalla) {
             cuadroDialogo.style.display = "block";
         }
     }else{
-        if(!segundaSeccion.classList.contains('desactive')){
+        if(!segundaSeccion.classList.contains('hidden')){
             cuadroDialogo.style.visibility = "hidden";
             cuadroDialogo.style.display = "none";
             document.querySelector('.botonVerCatalogo').style.display = 'none';
@@ -200,7 +212,7 @@ function ajustarInterfazDistribuidor(pantalla) {
 const abrirCarrito = ()=>{
     const carritoActual = obtenerItemCarrito();
     const totalCompra = calcularTotalCarrito(carritoActual);
-     segundaSeccion.classList.remove('desactive'); 
+     segundaSeccion.classList.remove('hidden'); 
     segundaSeccion.classList.add('carrito');
         segundaSeccion.innerHTML = `
         <section class="cabeceraPopup border-bottom d-flex justify-content-center align-items-center">
@@ -327,7 +339,7 @@ function venderBebidas(){
         diaActual++;
         guardarDia(diaActual);
         actualizarDia(diaActual);
-    }, 120000);
+    }, 480000);
 }
 function backHome(){
     cesped.classList.remove('ventas-bebidas');

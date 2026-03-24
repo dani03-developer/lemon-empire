@@ -129,7 +129,7 @@ let finalizarCompra = (carrito,total,capital) => {
             });
             carritoCompra = [];
             sessionStorage.removeItem('productosCarrito');
-            document.querySelector('.grid-carrito').classList.add('desactive');
+            document.querySelector('.grid-carrito').classList.add('hidden');
             document.getElementById('cantidad-carrito').innerText = "0";
             document.getElementById('resultado-suma').innerText = "$ 0";;
         }    
