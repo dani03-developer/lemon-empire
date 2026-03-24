@@ -108,7 +108,7 @@ function verInventario(){ //solo muestra
         let nuevoProducto = document.createElement('section');
         nuevoProducto.classList.add('container-producto');
         nuevoProducto.innerHTML = `
-                <img class="producto" src="./img/${i.producto}.png" alt="">
+                <img class="producto" src="./img/${i.producto.toLowerCase()}.png" alt="">
                     <section class="contador">
                         <p class= "contador-producto">${i.cantidad}</p>
                     </section>
