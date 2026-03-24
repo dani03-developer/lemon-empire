@@ -163,9 +163,9 @@ const verProductosDistribuidor = () =>{
         let nuevoProducto = document.createElement('section'); //creamos un nuevo section para los productos
         nuevoProducto.classList.add('container-producto-distribuidor');
         nuevoProducto.innerHTML = `
-                <img src="../img/${i.producto}.png" alt="">
+                <img src="./img/${i.producto}.png" alt="">
                     <section class="nombre-descripcion-producto">
-                        <p>${i.producto}-${i.cantidad}</p>
+                        <p>${i.producto}-${i.cantidad.toLowerCase()}</p>
                         <a id="boton-agregar-carrito" onclick="agregarAlCarrito('${i.producto}','${i.cantidad}','${i.cantidadReal}', ${i.precio})"><img src="./img/moneda.png"> $ ${i.precio}</a>
                     </section>
         `;
