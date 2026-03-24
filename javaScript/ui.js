@@ -236,7 +236,7 @@ const abrirCarrito = ()=>{
         let nuevoProducto = document.createElement('section'); //creamos un nuevo section para los productos
         nuevoProducto.classList.add('container-producto-carrito');
         nuevoProducto.innerHTML = `
-                <img src="./img/${i.producto}.png" alt="">
+                <img src="./img/${i.producto.toLowerCase()}.png" alt="">
                     <section class="producto-cantidad">
                         <p>${i.producto} - ${i.tipoCantidad}</p>
                             <section onclick = "actualizarCantidad('${i.producto}', 'menos')" class="btn-mas-menos"><p>-</p></section>
