@@ -319,7 +319,7 @@ function venderBebidas(){
             mensajeClientes(dialogoCliente,textoClientes,pedidoActual);
         }
         preparandoBebida(pedidoActual.bebida);
-    }, 15000);
+    }, 10000);
     setTimeout(()=>{
         clearInterval(intervaloPedidos);
         intervaloPedidos = null;
@@ -339,7 +339,7 @@ function venderBebidas(){
         diaActual++;
         guardarDia(diaActual);
         actualizarDia(diaActual);
-    }, 480000);
+    }, 300000);
 }
 function backHome(){
     cesped.classList.remove('ventas-bebidas');
