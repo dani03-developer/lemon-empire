@@ -21,24 +21,49 @@ const dialogoCliente = document.getElementById('dialogo-clientes');
 const textoClientes = document.getElementById('mesaje-cliente');
 const dialogoDespedida = document.getElementById('dialogo-despedida');
 const textoDespedida = document.getElementById('mensaje-despedida');
+const btnPasarDia = document.querySelector('.btnPasarDia');
+
+/****************************************************************** */
+/********************FUNCIONES PRINCIPALES **************************** */
+/****************************************************************** */
 function navegarA(screenId) {
     const screens = document.querySelectorAll('.screens');
     screens.forEach(s => s.classList.add('hidden'));
     const verPantalla = document.getElementById(screenId);
     verPantalla.classList.remove('hidden');
 };
-function start(){
+let cambiarDia = ()=>{
     navegarA('day-screen');
     arbol.classList.add('hidden');
     cesped.classList.add('hidden'); 
     cielo.classList.add('hidden');
     setTimeout(() =>{
         navegarA('game-screen');
+        if(!nombreDelJugador){
+            const mainElement = document.querySelector('main');
+            mainElement.classList.add('bru');
+            cielo.classList.add('bru');
+            cesped.classList.add('bru');
+            arbol.classList.add('bru');
+            popup.classList.remove('desactive');
+        }else{
+            cambiarMensaje(dialogo,mensajeTexto, 0);
+        }
         arbol.classList.remove('hidden');
         cesped.classList.remove('hidden'); 
         cielo.classList.remove('hidden');
-        cambiarMensaje(dialogo,mensajeTexto, 0);
+        
     }, 2000);
+};
+function start(){
+    cambiarDia();
+}
+
+function salir(){
+    window.close();
+}
+function volverInicio(){
+    navegarA('main-screen');
 }
 const cambiarMensaje = (dialogo, texto, i) =>{
     dialogo.style.visibility = "visible";
@@ -140,6 +165,9 @@ const verProductosDistribuidor = () =>{
 };
 function cerrarCatalogo(){
         segundaSeccion.classList.add('desactive');
+        document.body.classList.remove('modo-distribuidor');
+        cesped.src = './img/cesped.png';  
+        arbol.src = './img/arbolDos.png';  
         navegarA('game-screen');
 }
 const esDesktop = window.matchMedia('(min-width: 992px)');
@@ -233,7 +261,6 @@ function actualizarCantidad(nombreProducto,accion){
     }
     enviarItemAlCarrio(carritoActual);
     abrirCarrito(); //actualizo
-    console.log(sumaDeTotales(carritoActual));
 }
 const cerrarCarrito=()=>{
     segundaSeccion.classList.remove('carrito');
@@ -254,34 +281,80 @@ const mensajeClientes = (dialogo, texto, pedido) =>{
     dialogo.classList.add('scale-up-center');
     audioNotificacion.play();
 };
+let esNoche = false;
+let intervaloPedidos = null;
 function venderBebidas(){
+    if(esNoche){
+        navegarA('vender-bebidas');
+        return;
+    }
+     if(intervaloPedidos) {
+        clearInterval(intervaloPedidos);
+        intervaloPedidos = null;
+    }
     navegarA('vender-bebidas');
     cesped.classList.add('ventas-bebidas');
     cesped.src = './img/cespedTres.png';
+    arbol.classList.add('vender-bebidas');
     let pedidoActual = selecionBebidasYCliente();
     mensajeClientes(dialogoCliente,textoClientes,pedidoActual);
     preparandoBebida(pedidoActual.bebida);
 
-    const intervaloPedidos = setInterval(()=>{
+    intervaloPedidos = setInterval(()=>{
         pedidoActual = selecionBebidasYCliente();
         const enVentas = !document.getElementById('vender-bebidas').classList.contains('hidden');
         if(enVentas){
             mensajeClientes(dialogoCliente,textoClientes,pedidoActual);
         }
         preparandoBebida(pedidoActual.bebida);
-    }, 20000);
+    }, 15000);
     setTimeout(()=>{
         clearInterval(intervaloPedidos);
+        intervaloPedidos = null;
+        esNoche = true;
         document.body.classList.add('modo-nocturno');
         const tienda = document.getElementById('tienda-jugos-venta');
         const luna = document.querySelector('.luna');
         dialogoCliente.classList.add('hidden');
         dialogoDespedida.classList.remove('hidden');
+        btnPasarDia.classList.remove('hidden');
         cambiarMensaje(dialogoDespedida,textoDespedida, 4);
         cielo.style.visibility = "hidden";
         luna.classList.remove('hidden');
         tienda.src = "./img/juice-shop-closed.png";
         tienda.classList.add('closed');
+        let diaActual = obtenerDia();
+        diaActual++;
+        guardarDia(diaActual);
+        actualizarDia(diaActual);
     }, 120000);
-
+}
+function backHome(){
+    cesped.classList.remove('ventas-bebidas');
+    arbol.classList.remove('vender-bebidas');
+    cesped.src = './img/cesped.png';  
+    arbol.src = './img/arbolDos.png';  
+    navegarA('game-screen')
+}
+function pasarDia(){
+    esNoche = false; 
+    document.body.classList.remove('modo-nocturno');
+    cesped.classList.remove('ventas-bebidas');
+    arbol.classList.remove('vender-bebidas');
+    cesped.src = './img/cesped.png';
+    arbol.src = './img/arbolDos.png';
+    const tiendaVenta = document.getElementById('tienda-jugos-venta');
+    const luna = document.querySelector('.luna');
+    if(tiendaVenta){
+        tiendaVenta.src = "./img/juice-shop.png";
+        tiendaVenta.classList.remove('closed');
+    }
+    if(luna) luna.classList.add('hidden');
+    dialogoCliente.classList.remove('hidden');
+    cielo.style.visibility = "visible";
+    dialogoDespedida.classList.add('hidden');
+    btnPasarDia.classList.add('hidden');
+    const nuevoDia = obtenerDia();
+    cargarProductosDistribuidor(nuevoDia);
+    cambiarDia();
 }

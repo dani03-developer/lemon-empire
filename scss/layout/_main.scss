@@ -75,6 +75,7 @@ main{
     padding: 0.3rem 2rem;
     border: .1rem solid variables.$color-negro;
     border-radius: 3rem;
+    cursor: pointer;
 }
 .imagen-menu{
     flex: 1;
@@ -143,7 +144,7 @@ main{
     z-index: 4;
     visibility: visible;
 }
-#popup.desactive, #segundaSeccion.desactive, .grid-carrito.desactive{
+#popup.desactive,#segundaSeccion.desactive, .grid-carrito.desactive{
     visibility: hidden;
     display: none;
 } 
@@ -255,7 +256,7 @@ main{
         transform:scale(1)
     } 
 }
-#inventario, #venderBebidas, #comprarInsumos{
+.btn-game{
     cursor: pointer;
 }
 .cabeceraPopup{
@@ -510,6 +511,9 @@ main{
     }
 
 }
+.home{
+    height: 2.2rem;
+}
 body.modo-nocturno {
     background-color: variables.$color-azul;
     #dinero-noche {
@@ -531,9 +535,22 @@ body.modo-nocturno {
     height: fit-content;
     margin-bottom: 3rem;
 }
+#arbolDos.vender-bebidas{
+    bottom: 3rem;
+    height: 20rem;
+}
 .cesped.ventas-bebidas{
     bottom: 0;
     left: 0;
     height: 20%;
     width: auto;
 }
+#boton-pasar-dia{
+        border: none;
+        background-color: variables.$color-marron-oscuro;
+        color: variables.$color-base;
+        width: 60%;
+        padding: .7rem .3rem;
+        border-radius: 2rem;
+        text-align: center;
+    }

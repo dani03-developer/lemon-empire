@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-     <section id="popup">
+     <section id="popup" class="desactive">
         <img class="personaje-popup" src="./img/gato.png" alt="">
         <form class="form-nombre">
             <label for="">Ingresa tu nombre:</label>
@@ -21,7 +21,7 @@
             <button type="button" onclick="cerrarPopup()">Confirmar</button>
         </form>
     </section>
-    <main class="bru">
+    <main>
         <section id="main-screen" class="contenedor screens">
            <section class="cabecera">
                 <section class="circulo"></section>
@@ -39,7 +39,7 @@
                 <section class="botones">
                         <a class="boton-menu" id="boton-start" onclick="start()">Start</a>
                         <a class="boton-menu" id="boton-manual">¿Cómo jugar?</a>
-                        <a class="boton-menu" id="boton-salir">Salir</a>
+                        <a class="boton-menu" id="boton-salir" onclick="salir()">Salir</a>
                 </section>
             </section>
             <section class="imagen-menu">
@@ -81,10 +81,10 @@
                             <h2>Menú</h2>
                         </section>
                         <ol>
-                            <li onclick="verInventario()" id="inventario">Ver Inventario</li>
-                            <li onclick="tiendaDistribuidor()"  id="insumos">Comprar Insumos</li>
-                            <li onclick= "venderBebidas()" id="venderBebidas">Vender Bebidas</li>
-                            <li><a href="./index.html">Volver al inicio</a></li>
+                            <li class="btn-game" onclick="verInventario()" id="inventario">Ver Inventario</li>
+                            <li class="btn-game" onclick="tiendaDistribuidor()"  id="insumos">Comprar Insumos</li>
+                            <li class="btn-game" onclick= "venderBebidas()" id="venderBebidas">Vender Bebidas</li>
+                            <li class="btn-game" onclick= "volverInicio()">Volver al inicio</li>
                         </ol>
                     </section>
                    <section id="dialogo">
@@ -162,8 +162,9 @@
             </section>
             
             <section class="container-audio-moneda d-flex justify-content-between align-items-center">
-                <section>
+                <section class="d-flex gap-3 align-items-start">
                     <img class="audio" src="./img/audio-muted.png" alt="">
+                    <img class="home" onclick="backHome()" src="./img/home.png" alt="">
                 </section>
                 <section class="container-moneda d-flex flex-row gap-2 ">
                     <img id="moneda" src="./img/moneda.png" alt="">
@@ -173,14 +174,14 @@
             <section class="luna hidden">
                     <img src="./img/luna.png" alt="">
                 </section>
-            <section class="contenedor-principal-ventas d-flex flex-grow-1 flex-column justify-content-center align-items-center position-relative">
-                <section class="seccionDialogo d-flex flex-grow-1 justify-content-center align-items-center">
-                    <section id="dialogo-despedida" class="hidden">
-                        <img class="personaje" src="./img/gato.png" alt="">
-                        <p id="mensaje-despedida"></p>
-                        <audio id="audio-notificacion">
-                            <source src="./audio/notificacion.mp3">
-                        </audio>
+                <section class="contenedor-principal-ventas d-flex flex-grow-1 flex-column justify-content-center align-items-center position-relative">
+                    <section class="seccionDialogo d-flex flex-grow-1 justify-content-center align-items-center">
+                        <section id="dialogo-despedida" class="hidden">
+                            <img class="personaje" src="./img/gato.png" alt="">
+                            <p id="mensaje-despedida"></p>
+                            <audio id="audio-notificacion">
+                                <source src="./audio/notificacion.mp3">
+                             </audio>
                     </section>
                     <section id="dialogo-clientes">
                         <img class="personaje" src="" alt="">
@@ -189,9 +190,14 @@
                             <source src="./audio/notificacion.mp3">
                         </audio>
                     </section>
-            </section>
-                <section class=" d-flex flex-grow-1 justify-content-center align-items-end">
+                </section>
+                <section class="btnPasarDia hidden d-flex flex-grow-1 justify-content-center w-100">
+                        <a id="boton-pasar-dia" onclick="pasarDia()">Pasar de Día</a>
+                </section>
+                <section class=" d-flex flex-grow-1 justify-content-center align-items-end gap-3">
+                     <img class="d-none d-lg-block" src="./img/arbolDos.png" alt="">
                     <img id="tienda-jugos-venta" src="./img/juice-shop.png" alt="">
+                     <img class="d-none d-lg-block" src="./img/arbolUno.png" alt="">
                 </section>
             </section>
              <section class="d-none d-lg-block p-5 border-top"></section>

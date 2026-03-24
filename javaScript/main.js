@@ -3,28 +3,29 @@
 /****************************************************************** */
 navegarA('main-screen');
 actualizarDia();
-cargarProductosDistribuidor(diaActual);
+if(!obtenerDia()){
+    guardarDia(diaActual); 
+    cargarProductosDistribuidor(diaActual);
+}else{
+    let dia = obtenerDia();
+    actualizarDia(dia);
+    cargarProductosDistribuidor(dia);
+}
 if(!obtenerCapital()){
     guardarCapital(capitalActual); 
-}
-let capital = obtenerCapital();
-capitalActual = Number(capital); 
-dinero.forEach(element => {
+}else{
+    let capital = obtenerCapital();
+    capitalActual = Number(capital); 
+    dinero.forEach(element => {
     element.innerText = `$ ${capitalActual.toLocaleString('es-AR')}`;
-});
-// Pedir y verificar si tenemos el nombre del Usuario/ Jugador
-if(nombreDelJugador){
-    popup.classList.add('desactive');
-        document.querySelectorAll('.bru').forEach(function(elemento) {
-        elemento.classList.remove('bru');
     });
-};
+}
+// Pedir y verificar si tenemos el nombre del Usuario/ Jugador
 function cerrarPopup(){
     const input = document.getElementById('input-nombre');
     const posibleNombre = input.value.trim(); // trim()  elimina los espacios en blanco al inicio y al final de una cadena
     if(posibleNombre.length === 0){
          Toastify({
-
             text: "❌ Eror, ingrese un nombre",
             duration: 3000,
             gravity :"top",
@@ -36,11 +37,11 @@ function cerrarPopup(){
     }else{
         guardarNombre(posibleNombre);
         nombreDelJugador = posibleNombre;
-        
         popup.classList.add('desactive');
         document.querySelectorAll('.bru').forEach(function(elemento) {
         elemento.classList.remove('bru');
         });
+        cambiarMensaje(dialogo,mensajeTexto, 0);
     }
    
 };

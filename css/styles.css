@@ -89,6 +89,7 @@ main {
   padding: 0.3rem 2rem;
   border: 0.1rem solid #3d3a3a;
   border-radius: 3rem;
+  cursor: pointer;
 }
 
 .imagen-menu {
@@ -287,7 +288,7 @@ main {
     transform: scale(1);
   }
 }
-#inventario, #venderBebidas, #comprarInsumos {
+.btn-game {
   cursor: pointer;
 }
 
@@ -540,6 +541,10 @@ main {
   background-color: #E79F5B;
 }
 
+.home {
+  height: 2.2rem;
+}
+
 body.modo-nocturno {
   background-color: #3C5D8B;
 }
@@ -562,11 +567,26 @@ body.modo-nocturno .contenedor-principal-ventas {
   margin-bottom: 3rem;
 }
 
+#arbolDos.vender-bebidas {
+  bottom: 3rem;
+  height: 20rem;
+}
+
 .cesped.ventas-bebidas {
   bottom: 0;
   left: 0;
   height: 20%;
   width: auto;
+}
+
+#boton-pasar-dia {
+  border: none;
+  background-color: #8B4C27;
+  color: #FAF4E6;
+  width: 60%;
+  padding: 0.7rem 0.3rem;
+  border-radius: 2rem;
+  text-align: center;
 }
 
 * {
@@ -606,6 +626,9 @@ body {
   }
   .modo-distribuidor #tienda-jugos {
     width: 80%;
+  }
+  #arbolDos.vender-bebidas {
+    bottom: 7rem;
   }
 }
 /* Small devices (landscape phones, 576px and up)*/
@@ -663,6 +686,9 @@ body {
   #tienda-jugos-venta.closed {
     width: 65%;
   }
+  #boton-pasar-dia {
+    width: 40%;
+  }
   .cesped.ventas-bebidas {
     width: 100%;
     height: 20%;
@@ -708,6 +734,9 @@ body {
     width: 50%;
     transform: translate(-50%, -70%);
   }
+  .home {
+    height: 2.2rem;
+  }
   #dialogo-despedida {
     width: 65%;
   }
@@ -717,6 +746,10 @@ body {
   .cesped.ventas-bebidas {
     width: 100%;
     height: auto;
+  }
+  #arbolDos.vender-bebidas {
+    bottom: 4rem;
+    height: 25rem;
   }
 }
 @media (min-width: 992px) {
@@ -780,6 +813,9 @@ body {
     transform: translate(-25%, 0%);
     width: 35%;
     position: static;
+    height: fit-content;
+  }
+  .modo-distribuidor #segundaSeccion.carrito {
     max-height: 55vh;
   }
   .modo-distribuidor .nombre-descripcion-producto a {
@@ -794,6 +830,9 @@ body {
   .contenedor-principal-ventas {
     margin-bottom: -2rem;
   }
+  .home {
+    height: 2.5rem;
+  }
   #tienda-jugos-venta {
     width: 50%;
     margin-bottom: 0rem;
@@ -801,6 +840,10 @@ body {
   #tienda-jugos-venta.closed {
     width: 50%;
     margin-bottom: 0rem;
+  }
+  #arbolDos.vender-bebidas {
+    visibility: hidden;
+    display: none;
   }
 }
 @media (min-width: 1200px) {
@@ -815,8 +858,11 @@ body {
   #dialogo-despedida {
     width: 50%;
   }
-  #tienda-jugos-venta {
-    width: 40%;
+  #tienda-jugos-venta, #tienda-jugos-venta.closed {
+    width: 35%;
+  }
+  #boton-pasar-dia {
+    width: 25%;
   }
 }
 @media (min-width: 1400px) {
@@ -884,6 +930,10 @@ body {
   }
   .p-5 {
     padding: 0rem !important;
+  }
+  #tienda-jugos-venta {
+    width: 30%;
+    margin-bottom: 0rem;
   }
 }
 

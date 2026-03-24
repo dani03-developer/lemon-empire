@@ -1,3 +1,6 @@
+/****************************************************************** */
+/********************VARIABLES********************************** */
+/****************************************************************** */
 const capitalInicial = 10000;
 let inventario =[];
 let carritoCompra = [];
@@ -5,6 +8,9 @@ let nombreDelJugador = obtenerNombre();
 let capitalActual = capitalInicial;
 let diaActual = 1;
 let cantidadItem = 1, total=0;
+/****************************************************************** */
+/********************PREPARATIVOS********************************** */
+/****************************************************************** */
 const mensaje = (nombre) => [
   `¡Hola ${nombre}! ¡Qué bueno que llegaste! Soy Limo 😺, tu socio. El sol está pegando fuerte y la gente tiene sed... tu objetivo es administrar el puesto de limonada y ganar dinero. Para eso, tendrás que comprar ingredientes, preparar limonada y venderla a los clientes. ¡Buena suerte!`,
   `¡Rayos! ⚡ El depósito está vacío, ${nombre}. Si no compramos ingredientes pronto, solo podremos venderles aire fresco a los clientes...¡Vamos a ver qué tiene el proveedor!"`,
@@ -12,8 +18,6 @@ const mensaje = (nombre) => [
  `¡Eso es, ${nombre}! 💪 Ya tenemos los insumos en el depósito. ¡Huele a éxito (y a muchos cítricos)! Deja de mirar las cajas y vamos a encender el exprimidor... ¡Es hora de poner a trabajar ese dinero y exprimir las ganancias!`,
  `¡Vaya día, jefe! Mis gajos ya no dan más, pero esas monedas brillan increíble. Mañana volvemos a exprimir el éxito. ¡A descansar!`
 ];
-
-//Catalogo de proveedores
 const catalogoDistribuidor = [
     { //clave : valor
       producto: "Limon", cantidad: "c/u",cantidadReal: 1,precio: 500}, 
@@ -29,44 +33,31 @@ const catalogoDistribuidor = [
 ];
 let catalogoDistribuidorActualizado = []; 
 
-//Simulamos la llegada de productos nuevos según el día de la semana al 
  function cargarProductosDistribuidor(diaActual) {
-    switch(diaActual){
-    case 1:
-        for(i =0; i<=3; i++){
-            catalogoDistribuidorActualizado.push(catalogoDistribuidor[i]); 
+     catalogoDistribuidorActualizado = []; 
+    if(diaActual < 3){
+        for(let i = 0; i <= 3; i++){
+            catalogoDistribuidorActualizado.push(catalogoDistribuidor[i]);
         }
-        guardarCatalogoDistribuidor(catalogoDistribuidorActualizado);
-    break;
-    case 3:
-        for(i =0; i<=4; i++){
-            catalogoDistribuidorActualizado.push(catalogoDistribuidor[i]); 
+    } else if(diaActual < 5){
+        for(let i = 0; i <= 4; i++){
+            catalogoDistribuidorActualizado.push(catalogoDistribuidor[i]);
         }
-        guardarCatalogoDistribuidor(catalogoDistribuidorActualizado);
-    break;
-    case 5:
-       for(i =0; i<=6; i++){
-            catalogoDistribuidorActualizado.push(catalogoDistribuidor[i]); 
+    } else if(diaActual < 7){
+        for(let i = 0; i <= 6; i++){
+            catalogoDistribuidorActualizado.push(catalogoDistribuidor[i]);
         }
-        guardarCatalogoDistribuidor(catalogoDistribuidorActualizado);
-    break;
-    case 7:
-        for(i =0; i<catalogoDistribuidor.length; i++){
-            catalogoDistribuidorActualizado.push(catalogoDistribuidor[i]); 
-        }
-        guardarCatalogoDistribuidor(catalogoDistribuidorActualizado);
-    break;
-        default:
-            catalogoDistribuidorActualizado = [...catalogoDistribuidor];
-             guardarCatalogoDistribuidor(catalogoDistribuidorActualizado);
+    } else {
+        catalogoDistribuidorActualizado = [...catalogoDistribuidor];
+    }
+    guardarCatalogoDistribuidor(catalogoDistribuidorActualizado);
 }
+let actualizarDia =(dia)=>{
+    dias.innerHTML =` <img class="imagen-sol" src="../img/sol.png" alt=""> Día ${dia}`;
 }
-/*Actualizar Dias */
-let actualizarDia =()=>{
-    dias.innerHTML =` <img class="imagen-sol" src="../img/sol.png" alt=""> Día ${diaActual}`;
-}
-/*Actualizar capital */
-
+/****************************************************************** */
+/********************INVENTARIO********************************** */
+/****************************************************************** */
 // Agregar productos al inventario
 let agregarInventario = (producto, cantidad, cantidadReal) =>{ //agrega
     inventario = obtenerInventario();
@@ -292,7 +283,7 @@ const preparandoBebida = (nombrebebida)=>{
         let enStock = inventarioActual.find(x => x.producto === ing.ingrediente);
         if(!enStock || enStock.cantidadReal < ing.cantidad){
             tieneTodo = false;
-            let texto = `❌ Falta ${enStock.producto}`;
+            let texto = enStock ? `❌ Falta ${enStock.producto}` : `❌ Falta ${ing.ingrediente}`;
             Toastify({
             text: texto,
             duration: 3000,
@@ -307,7 +298,12 @@ const preparandoBebida = (nombrebebida)=>{
     if(tieneTodo){
         receta.ingredientes.forEach(ing =>{
         let enStock = inventarioActual.find(x => x.producto === ing.ingrediente);
-             enStock.cantidadReal -= ing.cantidad;
+            if(enStock.producto === "Limon" || enStock.producto === "Vasos" ||enStock.producto === "Naranja" || enStock.producto === "Menta" || enStock.producto === "Manzana" || enStock.producto === "Anana"){
+                enStock.cantidadReal -= ing.cantidad;
+                enStock.cantidad -= ing.cantidad;
+            }else{
+                 enStock.cantidadReal -= ing.cantidad;
+            }
              if(enStock.cantidadReal<=0){
                     enStock.cantidadReal = 0;
                     enStock.cantidad = 0;
@@ -320,9 +316,10 @@ const preparandoBebida = (nombrebebida)=>{
         dinero.forEach(element => {
              element.innerText = `$ ${agregarGanancia.toLocaleString('es-AR')}`;
         });
+        let venta = `✅ Venta Exitosa! + $${receta.precio}`;
         Toastify({
-            text: "✅ Venta Exitosa!",
-            duration: 5000,
+            text: venta,
+            duration: 3000,
             gravity :"top",
             position: "center",
             style: {
@@ -336,7 +333,8 @@ const preparandoBebida = (nombrebebida)=>{
 };
 const selecionBebidasYCliente =()=>{
     const cliente = mensajeCliente();
-    const bebidasPermitidas = bebidasDisponibles(diaActual);
+    const dia = obtenerDia();
+    const bebidasPermitidas = bebidasDisponibles(dia);
     const indiceAlazar = Math.floor(Math.random()*bebidasPermitidas.length);
     const bebidaElegida = bebidasPermitidas[indiceAlazar];
     return {

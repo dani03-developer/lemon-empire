@@ -52,6 +52,9 @@ body{
         }
        
     }
+    #arbolDos.vender-bebidas{
+    bottom: 7rem;
+    }
 }
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {
@@ -112,6 +115,9 @@ body{
     #tienda-jugos-venta.closed{
             width: 65%;
     }
+    #boton-pasar-dia {
+        width: 40%;
+    }
     .cesped.ventas-bebidas{
     width: 100%;
     height: 20%;
@@ -168,6 +174,9 @@ body{
         width: 50%;
         transform: translate(-50%, -70%);
     }
+    .home{
+    height: 2.2rem;
+    }
     #dialogo-despedida{
             width: 65%;
     }
@@ -178,7 +187,10 @@ body{
     width: 100%;
     height: auto;
     }
-    
+    #arbolDos.vender-bebidas{
+        bottom: 4rem;
+        height: 25rem;
+    }
 }
 
 // Large devices (desktops, 992px and up)
@@ -246,6 +258,9 @@ body{
         transform: translate(-25%, 0%);
         width: 35%;
         position: static;
+        height: fit-content;
+    }
+     #segundaSeccion.carrito{
         max-height: 55vh;
     }
     .nombre-descripcion-producto{
@@ -265,6 +280,9 @@ body{
     .contenedor-principal-ventas{
         margin-bottom: -2rem;
     }
+    .home{
+         height: 2.5rem;
+    }
     #tienda-jugos-venta{
         width: 50%;
         margin-bottom: 0rem;
@@ -272,6 +290,10 @@ body{
     #tienda-jugos-venta.closed{
         width: 50%;
         margin-bottom: 0rem;
+    }
+    #arbolDos.vender-bebidas{
+        visibility: hidden;
+        display: none;
     }
 }
 
@@ -291,8 +313,11 @@ body{
      #dialogo-despedida{
             width: 50%;
     }
-     #tienda-jugos-venta{
-        width: 40%;
+     #tienda-jugos-venta, #tienda-jugos-venta.closed{
+        width: 35%;
+    }
+     #boton-pasar-dia {
+        width: 25%;
     }
 }
 
@@ -376,5 +401,10 @@ body{
     }
     .p-5 {
         padding: 0rem !important;
+    }
+
+    #tienda-jugos-venta{
+        width: 30%;
+        margin-bottom: 0rem;
     }
 }
