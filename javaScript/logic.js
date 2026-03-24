@@ -53,7 +53,7 @@ let catalogoDistribuidorActualizado = [];
     guardarCatalogoDistribuidor(catalogoDistribuidorActualizado);
 }
 let actualizarDia =(dia)=>{
-    dias.innerHTML =` <img class="imagen-sol" src="/img/sol.png" alt=""> Día ${dia}`;
+    dias.innerHTML =` <img class="imagen-sol" src="./img/sol.png" alt=""> Día ${dia}`;
 }
 /****************************************************************** */
 /********************INVENTARIO********************************** */
