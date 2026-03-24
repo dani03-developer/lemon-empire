@@ -108,7 +108,7 @@ function verInventario(){ //solo muestra
         let nuevoProducto = document.createElement('section');
         nuevoProducto.classList.add('container-producto');
         nuevoProducto.innerHTML = `
-                <img class="producto" src="../img/${i.producto}.png" alt="">
+                <img class="producto" src="./img/${i.producto}.png" alt="">
                     <section class="contador">
                         <p class= "contador-producto">${i.cantidad}</p>
                     </section>
@@ -166,7 +166,7 @@ const verProductosDistribuidor = () =>{
                 <img src="./img/${i.producto}.png" alt="">
                     <section class="nombre-descripcion-producto">
                         <p>${i.producto}-${i.cantidad}</p>
-                        <a id="boton-agregar-carrito" onclick="agregarAlCarrito('${i.producto}','${i.cantidad}','${i.cantidadReal}', ${i.precio})"><img src="../img/moneda.png"> $ ${i.precio}</a>
+                        <a id="boton-agregar-carrito" onclick="agregarAlCarrito('${i.producto}','${i.cantidad}','${i.cantidadReal}', ${i.precio})"><img src="./img/moneda.png"> $ ${i.precio}</a>
                     </section>
         `;
         grid.append(nuevoProducto);

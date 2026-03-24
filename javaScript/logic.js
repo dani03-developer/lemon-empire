@@ -53,7 +53,7 @@ let catalogoDistribuidorActualizado = [];
     guardarCatalogoDistribuidor(catalogoDistribuidorActualizado);
 }
 let actualizarDia =(dia)=>{
-    dias.innerHTML =` <img class="imagen-sol" src="../img/sol.png" alt=""> Día ${dia}`;
+    dias.innerHTML =` <img class="imagen-sol" src="/img/sol.png" alt=""> Día ${dia}`;
 }
 /****************************************************************** */
 /********************INVENTARIO********************************** */
@@ -221,7 +221,7 @@ const catalogoBebidas = {
 
 const dialogoClientes =  {
     "abuela":{
-        "imagen":"../img/abuela.png",
+        "imagen":"./img/abuela.png",
         "Limonada Clásica": "¡Hola, corazon! Una limonada clásica, como las que hacía yo, por favor.",
         "Limonada con Hielo": "Ay, qué calor... ponle un hielito a mi limonada, no me quiero insolar.",
         "Limonada con Menta": "¿Menta fresca? Qué bien hace para la digestión. Dame una de esas.",
@@ -230,7 +230,7 @@ const dialogoClientes =  {
         "Jugo de Ananá": "¡Ananá! Qué fruta tan exótica, dame uno para probar algo nuevo."
     },
     "mujer":{
-        "imagen":"../img/mujer.png",
+        "imagen":"./img/mujer.png",
         "Limonada Clásica": "Una clásica rápida, por favor, tengo una reunión en 5 minutos.",
         "Limonada con Hielo": "¡Uff! Necesito algo helado ahora mismo, dame una con hielo.",
         "Limonada con Menta": "¿Tienen menta? ¡Genial! Me encanta el toque refrescante que le da.",
@@ -239,7 +239,7 @@ const dialogoClientes =  {
         "Jugo de Ananá": "Hoy me merezco un gusto tropical. ¡Dame el de Ananá!"
     },
     "niña":{
-        "imagen":"../img/nina.png",
+        "imagen":"./img/nina.png",
         "Limonada Clásica": "¡Hola gato! ¿Me das una limonada? ¡Pero que no sea ácida!",
         "Limonada con Hielo": "¡Quiero una con hielos que hagan ruido al batir! ¡Porfiiis!",
         "Limonada con Menta": "¿Esa tiene hojitas verdes? ¡Qué gracioso! Quiero una.",
@@ -248,7 +248,7 @@ const dialogoClientes =  {
         "Jugo de Ananá": "Jugo de piña?...¡Esa es la más cara! ¡Debe ser super rica! ¡Papi me la compra!"
     },
     "hombre":{
-        "imagen":"../img/hombre.png",
+        "imagen":"./img/hombre.png",
         "Limonada Clásica": "¡Hola! Una limonada clásica, corta y al pie, por favor.",
         "Limonada con Hielo": "Dame una con hielo. Si no sale humo del frío, no sirve.",
         "Limonada con Menta": "¿Menta? Suena interesante. Dame una para probar.",

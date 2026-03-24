@@ -7,14 +7,14 @@ boton.addEventListener('click', function(){ //a cada boton de audio se le aplica
     if(estadoAudio === 'muted'){
         reproduciendoSonido.play();
         btnAudios.forEach(element => {
-                element.src = '../img/audio-active.png';
+                element.src = './img/audio-active.png';
             });
             estadoAudio = 'playing';
         
     }else{
         reproduciendoSonido.pause();
         btnAudios.forEach(element => {
-                element.src = '../img/audio-muted.png';
+                element.src = './img/audio-muted.png';
         });
         estadoAudio = 'muted';
     }
