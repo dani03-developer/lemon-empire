@@ -1,15 +1,13 @@
 /****************************************************************** */
 /***************PREPARATIVOS PARA EL INCIO ************************ */
 /****************************************************************** */
+
 navegarA('main-screen');
-actualizarDia();
-if(!obtenerDia()){
-    guardarDia(diaActual); 
-    cargarProductosDistribuidor(diaActual);
-}else{
-    let dia = obtenerDia();
-    actualizarDia(dia);
-    cargarProductosDistribuidor(dia);
+actualizarDia(diaActual); 
+cargarProductosDistribuidor(diaActual);
+if (!localStorage.getItem('diaActual')) {
+    guardarDia(diaActual);
+    guardarCapital(capitalActual);
 }
 if(!obtenerCapital()){
     guardarCapital(capitalActual); 

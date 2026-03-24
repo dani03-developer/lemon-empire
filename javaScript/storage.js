@@ -5,7 +5,7 @@ const obtenerCapital = () => localStorage.getItem('capitalActual') || "";
 const guardarDia = (dia) => localStorage.setItem('diaActual', dia);
 const obtenerDia = () => {
     const dia = localStorage.getItem('diaActual');
-    return dia ? Number(dia) : null;
+    return dia ? Number(dia) : 1;
 };
 const guardarInventario = (inventario) => localStorage.setItem('inventario', JSON.stringify(inventario));
 const obtenerInventario = () => JSON.parse(localStorage.getItem('inventario')) || [];

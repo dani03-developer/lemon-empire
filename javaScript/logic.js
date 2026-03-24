@@ -6,7 +6,7 @@ let inventario =[];
 let carritoCompra = [];
 let nombreDelJugador = obtenerNombre();
 let capitalActual = capitalInicial;
-let diaActual = 1;
+let diaActual = obtenerDia() || 1;
 let cantidadItem = 1, total=0;
 /****************************************************************** */
 /********************PREPARATIVOS********************************** */
