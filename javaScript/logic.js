@@ -160,7 +160,7 @@ let finalizarCompra = (carrito,total,capital) => {
 
 const catalogoBebidas = {
     "Limonada Clásica":{ //aqui hacemos un objeto para poder acceder más rápido sobre su clave
-        precio: 1800,
+        precio: 1100,
         ingredientes:[
            {ingrediente: "Limon", cantidad: 1},
            {ingrediente: "Azucar", cantidad: 15},
@@ -169,7 +169,7 @@ const catalogoBebidas = {
         ]
     },
     "Limonada con Hielo":{
-        precio: 2000,
+        precio: 1350,
         ingredientes:[
             {ingrediente: "Limon", cantidad: 1},
             {ingrediente: "Azucar", cantidad: 15}, 
@@ -179,7 +179,7 @@ const catalogoBebidas = {
         ]
     },
      "Limonada con Menta":{ 
-        precio: 2500,
+        precio: 1600,
         ingredientes:[
             {ingrediente: "Limon", cantidad: 1}, 
             {ingrediente: "Azucar", cantidad: 15}, 
@@ -189,7 +189,7 @@ const catalogoBebidas = {
         ]
     },
     "Jugo de Naranja":{
-        precio: 3500,
+        precio: 2200,
         ingredientes:[
             {ingrediente: "Azucar", cantidad: 15}, 
             {ingrediente: "Agua", cantidad: 200}, 
@@ -198,7 +198,7 @@ const catalogoBebidas = {
         ] 
     },
    "Jugo de Manzana": {
-        precio: 4000,
+        precio: 2800,
         ingredientes:[
             {ingrediente: "Azucar", cantidad: 15}, 
             {ingrediente: "Agua", cantidad: 200}, 
@@ -208,7 +208,7 @@ const catalogoBebidas = {
       
     },
     "Jugo de Ananá":{
-        precio: 5500,
+        precio: 3500,
         ingredientes:[
             {ingrediente: "Azucar", cantidad: 15}, 
             {ingrediente: "Agua", cantidad: 200}, 
