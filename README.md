@@ -38,6 +38,17 @@ El sitio consta de 4 módulos principales:
     Abre el archivo index.html en tu navegador o utiliza la extensión Live Server de VS Code.
   </li>
 </ol>
+<br>
+
+
+
+https://github.com/user-attachments/assets/8874c72a-f804-4ec2-a972-8e0e943d2558
+
+
+
+
+
+
 
 
 
